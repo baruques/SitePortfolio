@@ -1,0 +1,25 @@
+/* background-color: #F2F8F5 or rgba(242, 248, 245, 1) */
+/* overlay color: #B4CFC0 or rgba(180, 207, 192, 1) */
+/* darker color: #304B3C or rgba(48, 75, 60, 1) */
+body {
+    background-color: #F2F8F5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+
+h4 {
+    color: burlywood;
+    font-size: larger;
+    text-align: center;
+}
+
+/* Comentário atalho CTRL + ; */
