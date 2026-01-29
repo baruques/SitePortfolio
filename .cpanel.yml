@@ -1,5 +1,5 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home2/gabr1398/public_html/
+    - export DEPLOYPATH=/home2/gabr1398/public_html
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp style.css $DEPLOYPATH
