@@ -1,25 +1,103 @@
-/* background-color: #F2F8F5 or rgba(242, 248, 245, 1) */
-/* overlay color: #B4CFC0 or rgba(180, 207, 192, 1) */
-/* darker color: #304B3C or rgba(48, 75, 60, 1) */
+/* =========================================
+   1. CSS RESET
+   ========================================= */
+   
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: none;
+  font-size: 100%; /* Define 1rem = 16px como base padrão */
+}
+
 body {
-    background-color: #F2F8F5;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background-color: #F2F8F5; /* Sua cor bg-primary */
+  color: #304B3C; /* Sua cor darker */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-li {
-    margin: 0;
-    padding: 0;
-    font-size: large;
-    font-weight: bold;
-    color: black;
+/* ======================================================================================= */
+
+:root {
+  --rgb-overlay: 180, 207, 192; 
+  --rgb-dark: 48, 75, 60;      
+  
+  --bg-primary: #F2F8F5;
+  --color-deep: #0D1410;
+
+  --glass-bg: rgba(var(--rgb-overlay), 0.4);
+  --glass-border: rgba(var(--rgb-dark), 0.15);
+  
+  --spacing-md: 1rem;   
+  --spacing-lg: 2rem;   
+  --radius-lg: 1.5rem;  
 }
 
-h4 {
-    color: burlywood;
-    font-size: larger;
-    text-align: center;
+/* Header Sticky com Glassmorphism */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(242, 248, 245, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
 }
 
-/* Comentário atalho CTRL + ; */
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgb(var(--rgb-dark));
+  font-weight: 600;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
+}
+
+/* Grid de Projetos Responsivo */
+.grid-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card Estilo Vidro Evergreen */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgb(var(--rgb-dark));
+}
