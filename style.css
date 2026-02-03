@@ -2,34 +2,35 @@
    1. CSS RESET MODERNO
    ========================================= */
 *, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Garante que o header não cubra o título ao clicar no link */
-  -webkit-text-size-adjust: none;
-  font-size: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Compensa o header ao clicar em links âncora */
+    -webkit-text-size-adjust: none;
+    font-size: 100%;
 }
 
 body {
-  min-height: 100vh;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  background-color: #F2F8F5; /* Bg-primary */
-  color: #304B3C; /* Darker */
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-color: #F2F8F5; 
+    color: #304B3C; 
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden; 
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 /* =========================================
@@ -37,191 +38,413 @@ ul {
    ========================================= */
 :root {
   /* Paleta RGB para transparências */
-  --rgb-overlay: 180, 207, 192; /* #B4CFC0 */
-  --rgb-dark: 48, 75, 60;      /* #304B3C */
+    --rgb-overlay: 180, 207, 192; /* #B4CFC0 */
+    --rgb-dark: 48, 75, 60;      /* #304B3C */
   
   /* Cores Sólidas */
-  --bg-primary: #F2F8F5;
-  --color-deep: #0D1410;
+    --bg-primary: #F2F8F5;
+    --color-deep: #0D1410;
 
   /* Efeito Vidro Evergreen */
-  --glass-bg: rgba(var(--rgb-overlay), 0.3); /* Mais leve */
-  --glass-border: rgba(var(--rgb-dark), 0.1);
+    --glass-bg: rgba(var(--rgb-overlay), 0.3);
+    --glass-border: rgba(var(--rgb-dark), 0.1);
   
   /* Espaçamentos e Medidas */
-  --spacing-md: 1rem;   
-  --spacing-lg: 2rem;   
-  --radius-pill: 50px;
-  --radius-card: 24px;
+    --spacing-md: 1rem;   
+    --spacing-lg: 2rem;   
+    --radius-pill: 50px;
+    --radius-card: 24px;
 }
 
 /* =========================================
    3. HEADER "PÍLULA FLUTUANTE" (PHANTOM STYLE)
    ========================================= */
 .main-header {
-  position: sticky;
-  top: 20px; /* Espaço do topo */
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: center; /* Centraliza a pílula */
-  padding: 0 1rem;
-  pointer-events: none; /* Permite clicar no site nas laterais do header */
+    position: sticky;
+    top: 20px;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    pointer-events: none; /* Permite clicar nas laterais do header */
 }
 
 .nav-container {
-  pointer-events: auto; /* Reativa cliques dentro da pílula */
-  background: rgba(242, 248, 245, 0.9); /* Quase opaco para leitura */
-  backdrop-filter: blur(16px);
-  padding: 0.75rem 2.5rem;
-  border-radius: var(--radius-pill);
+    pointer-events: auto;
+    background: rgba(242, 248, 245, 0.9);
+    backdrop-filter: blur(16px);
+    padding: 0.75rem 2.5rem;
+    border-radius: var(--radius-pill);
   
-  display: flex;
-  align-items: center;
-  gap: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
   
-  /* Sombra suave + Borda sutil */
-  box-shadow: 0 10px 40px -10px rgba(48, 75, 60, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px -10px rgba(48, 75, 60, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .logo strong {
-  font-size: 1.2rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--color-deep);
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--color-deep);
 }
 
+/* Links de Navegação com Correção Vertical */
 .nav-links {
-  display: flex;
-  gap: 2rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .nav-links a {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: rgb(var(--rgb-dark));
-  transition: color 0.2s ease;
+    position: relative;
+    text-decoration: none;
+    color: rgb(var(--rgb-dark));
+    font-weight: 600;
+    font-size: 0.9rem;
+
+  /* Centralização Perfeita */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  
+    padding: 0.7rem 1.4rem;
+    border-radius: 24px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .nav-links a:hover {
-  color: var(--color-deep);
+    background-color: rgba(var(--rgb-overlay), 0.3);
+    color: var(--color-deep);
+    transform: translateY(-1px);
 }
 
 /* Botões Sociais */
 .social-buttons {
-  display: flex;
-  gap: 0.8rem;
+    display: flex;
+    gap: 0.8rem;
 }
 
 .social-btn {
-  padding: 0.6rem 1.4rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
   
-  background: rgba(var(--rgb-overlay), 0.4);
-  color: rgb(var(--rgb-dark));
-  
-  /* Sombra interna (Inset) para profundidade */
-  box-shadow: inset 0 2px 4px rgba(48, 75, 60, 0.06);
+    background: rgba(var(--rgb-overlay), 0.4);
+    color: rgb(var(--rgb-dark));
+    box-shadow: inset 0 2px 4px rgba(48, 75, 60, 0.06);
 }
 
 .social-btn:hover {
-  transform: translateY(-2px);
-  background: rgb(var(--rgb-dark));
-  color: var(--bg-primary);
-  box-shadow: 0 8px 20px rgba(48, 75, 60, 0.25); /* Sombra externa ao flutuar */
+    transform: translateY(-2px);
+    background: rgb(var(--rgb-dark));
+    color: var(--bg-primary);
+    box-shadow: 0 8px 20px rgba(48, 75, 60, 0.25);
 }
 
 /* =========================================
-   4. HERO & GRID DE PROJETOS
+   4. HERO SCROLL (Efeito Fade-Out Sticky)
    ========================================= */
-.grid-projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cards mais largos */
-  gap: 2rem;
-  padding: 120px 2rem 4rem; /* Padding top alto para compensar o header fixo */
-  max-width: 1280px;
-  margin: 0 auto;
+.hero-scroll {
+
+    height: 130vh; /* Altura extra para permitir scroll */
+    position: relative;
+    margin-top: -100px; /* Puxa para cima para ficar atrás do header */
+    z-index: 1;
 }
 
-/* Card Estilo Vidro */
-.card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-card);
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+.hero-sticky-content {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 1rem;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  border-color: rgb(var(--rgb-dark));
-  box-shadow: 0 15px 40px -10px rgba(48, 75, 60, 0.15);
-  background: rgba(255, 255, 255, 0.6); /* Clareia levemente no hover */
+.hero-text {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--color-deep);
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
 }
 
-/* Estilo das Tags (Rust, DeFi, etc) */
+.hero-text .highlight {
+    color: rgb(var(--rgb-dark));
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hero-subtext {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgb(var(--rgb-dark));
+    opacity: 0.9;
+    max-width: 700px;
+}
+
+/* =========================================
+   5. SKILLS GRID (Competências)
+   ========================================= */
+.skills-section {
+    padding: 4rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; /* Fica por cima do Hero */
+    background: var(--bg-primary); /* Fundo sólido para cobrir o texto fixo */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    box-shadow: 0 -20px 50px rgba(0,0,0,0.02); /* Sombra suave no topo */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--color-deep);
+    font-weight: 700;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.skill-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    border-radius: 24px;
+    padding: 2.5rem 1.5rem;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  
+    transition: all 0.3s ease;
+    cursor: default;
+    min-height: 180px;
+}
+
+.skill-card i {
+    font-size: 3.5rem;
+    color: rgb(var(--rgb-dark));
+    transition: transform 0.3s ease;
+}
+
+.skill-card span {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-deep);
+}
+
+.skill-card:hover {
+    background: rgba(var(--rgb-overlay), 0.6);
+    transform: translateY(-5px);
+    border-color: rgb(var(--rgb-dark));
+    box-shadow: 0 10px 30px rgba(48, 75, 60, 0.1);
+}
+
+.skill-card:hover i {
+    transform: scale(1.15);
+    color: #0D1410;
+}
+
+/* =========================================
+   6. CARROSSEL DE PROJETOS
+   ========================================= */
+.projects-section {
+    padding: 4rem 0 6rem;
+    background: var(--bg-primary);
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 2rem max(5%, (100vw - 1200px) / 2) 4rem; /* Centraliza visualmente em telas grandes */
+  
+  /* Esconde Scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+.project-card {
+    flex: 0 0 350px; 
+    height: 480px;   
+    scroll-snap-align: center;
+    position: relative;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  
+    background: #E8F1ED; 
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -10px rgba(48, 75, 60, 0.15);
+    border-color: rgb(var(--rgb-dark));
+}
+
+/* Imagem de Fundo (Hover Reveal) */
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Começa levemente visível ou invisível (0) conforme gosto */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 0;
+    filter: grayscale(100%); /* Opcional: começa preto e branco */
+}
+
+.project-card:hover .card-bg {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+/* Conteúdo do Card */
+
+.card-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(242, 248, 245, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: transform 0.3s ease;
+}
+
 .tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  color: var(--color-deep);
-  background: rgba(180, 207, 192, 0.5); /* Cor Overlay sólida */
-  padding: 6px 14px;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--color-deep);
+    background: rgba(var(--rgb-overlay), 0.5);
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
-.card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-deep);
-  line-height: 1.2;
+.project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-deep);
 }
 
-.card p {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-bottom: 0.5rem;
+.project-card p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.4;
+    cursor: default;
 }
 
-.card a {
-  color: var(--color-deep);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-  font-weight: 600;
-}
+/* =========================================
+   7. RESPONSIVIDADE
+   ========================================= */
 
-/* Responsividade para Mobile */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nav-container {
-    padding: 0.75rem 1.5rem;
+    /* Reduz paddings e gaps para caber tudo */
+    padding: 0.6rem 1.5rem;
     gap: 1.5rem;
-    width: 95%;
   }
   
   .nav-links {
-    display: none; /* Esconde links no mobile por enquanto (Menu Hambúrguer futuro) */
+    gap: 0.2rem; /* Links mais próximos */
   }
   
-  .social-buttons span { 
-    display: none; /* Esconde o texto "GitHub", deixa só ícone */
+  .nav-links a {
+    padding: 0.6rem 1rem; /* Pílulas menores */
+    font-size: 0.85rem;
   }
   
-  .grid-projects {
-     padding-top: 100px;
+  .social-buttons {
+    gap: 0.5rem;
   }
+  
+  .social-btn {
+    padding: 0.6rem 1rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .nav-container {
+    justify-content: space-between; 
+  }
+  
+  .nav-links {
+    display: none; 
+  }
+  
+  .social-buttons span {
+    display: none; 
+  }
+  
+  .social-btn {
+    padding: 0.6rem; 
+    border-radius: 50%; 
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem;
+  }
+  
+  .skill-card {
+    padding: 1.5rem 1rem; 
+    min-height: 150px;
+  }
+  
+  .skill-card i {
+      font-size: 2.5rem;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
 }

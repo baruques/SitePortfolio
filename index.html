@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baruque</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="Portfolio de Gabriel Baruque - Desenvolvedor Blockchain e Web3">
+    
+    <title>Gabriel Baruque | Blockchain Developer</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=1.2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -17,54 +26,171 @@
 
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
+                    <li><a href="#skills">Competências</a></li>
                     <li><a href="#projetos">Projetos</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
 
                 <div class="social-buttons">
                     <a href="https://github.com/baruques" target="_blank" class="social-btn">
-                    <i class="fab fa-github"></i> GitHub
+                        <i class="fab fa-github"></i> <span>GitHub</span>
                     </a>
                     <a href="https://www.linkedin.com/in/baruques/" target="_blank" class="social-btn">
-                    <i class="fab fa-linkedin"></i> LinkedIn
+                        <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
                     </a>
                 </div>
             </nav>
-</header>
+        </header>
 
-        <section class="grid-projects">
-            <div class="card">
-                <div class="tag">Rust</div>
-                <h3>Bot de Trading na GMX</h3>
-                <p>Bot operando via GMX com estratégia baseada em market cycles e dominância de BTC.</p>
-            </div>
-
-            <div class="card">
-                <div class="tag">DeFi</div>
-                <h3>Formação DeFi</h3>
-                <p>Experiência com protocolos DeFi, yield farming e liquidez.</p>
-                <p>Total liberdade financeira, operando em DEX.</p>
-                <p>Aluno do <a href="https://nearx.com.br/">maior curso de Blockchain</a> da América Latina.</p>
-            </div>
-
-            <div class="card">
-                <div class="tag">Desenvolvimento Web2 | Web3</div>
-                <h3>Site portfolio</h3>
-                <p>Design moderno inspirado na carteira Phantom, com deploy automatizado via cPanel e GitHub.</p>
-            </div>
-
-            <div class="card">
-                <div class="tag">Aprendizado de Máquina | Inteligência Artificial</div>
-                <h3>Projeto de Analisador de mercado em Python</h3>
-                <p>Desenvolvimento de um analisador de mercado utilizando técnicas de aprendizado de máquina para previsão de preços.</p>
-            </div>
-
-            <div class="card">
-                <div class="tag">Experiência com mercado Crypto</div>
-                <h3>Análise de Sentimento de Mercado</h3>
-                <p>Desenvolvimento de um sistema de análise de sentimento de mercado utilizando técnicas de processamento de linguagem natural.</p>
+        <section id="home" class="hero-scroll">
+            <div class="hero-sticky-content">
+                <h1 class="hero-text">
+                    Seu desenvolvedor <br>
+                    <span class="highlight">
+                        <i class="fab fa-ethereum"></i> Blockchain
+                    </span>
+                </h1>
+                <p class="hero-subtext">Construindo soluções descentralizadas para o futuro da Web3.</p>
             </div>
         </section>
+
+        <section id="skills" class="skills-section">
+            <h2 class="section-title">Tech Stack & Competências</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <span>MySQL</span>
+                </div>
+                
+                <div class="skill-card" style="border-color: rgba(98, 126, 234, 0.5);">
+                    <i class="fab fa-rust"></i>
+                    <span>Rust</span>
+                </div>
+                <div class="skill-card" style="border-color: rgba(98, 126, 234, 0.5);">
+                    <i class="fab fa-ethereum"></i>
+                    <span>Solidity</span>
+                </div>
+                <div class="skill-card" style="border-color: rgba(98, 126, 234, 0.5);">
+                    <i class="fas fa-file-code"></i>
+                    <span>Smart Contracts</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero-scroll" style="z-index: 1;">
+            <div class="hero-sticky-content">
+                <h2 class="hero-text">
+                    Projetos completos <br>
+                    <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">
+                        ou em andamento
+                    </span>
+                </h2>
+                <i class="fas fa-arrow-down" style="font-size: 2rem; margin-top: 2rem; opacity: 0.5; animation: bounce 2s infinite;"></i>
+            </div>
+        </section>
+
+        <section id="projetos" class="projects-section">
+            <div class="carousel-container">
+                
+                <div class="card project-card">
+                    <div class="card-bg" style="background-image: url('assets/print-bot.jpg');"></div>
+                    <div class="card-content">
+                        <div class="tag">Rust | Trading</div>
+                        <h3>Bot GMX</h3>
+                        <p>Automação de trading baseada em ciclos de mercado e dominância do BTC.</p>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="card-bg" style="background-image: url('assets/print-curso.jpg');"></div>
+                    <div class="card-content">
+                        <div class="tag">DeFi | Educação</div>
+                        <h3>Formação DeFi</h3>
+                        <p>Estratégias avançadas de Yield Farming e provisão de liquidez em DEX.</p>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="card-bg" style="background-image: url('assets/print-site.jpg');"></div>
+                    <div class="card-content">
+                        <div class="tag">Web3 Design</div>
+                        <h3>Portfolio Phantom</h3>
+                        <p>Interface moderna estilo Glassmorphism com deploy automatizado via cPanel.</p>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="card-bg"></div>
+                    <div class="card-content">
+                        <div class="tag">Python | ML</div>
+                        <h3>Análise de Mercado</h3>
+                        <p>Previsão de preços de criptoativos utilizando Machine Learning.</p>
+                    </div>
+                </div>
+
+                 <div class="card project-card">
+                    <div class="card-bg"></div>
+                    <div class="card-content">
+                        <div class="tag">NLP | Dados</div>
+                        <h3>Sentiment Analysis</h3>
+                        <p>Monitoramento de redes sociais para identificar tendências.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <footer id="contato" style="text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem;">
+            <p>&copy; 2026 Gabriel Baruque. Todos os direitos reservados.</p>
+        </footer>
+
     </main>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const heroes = document.querySelectorAll('.hero-scroll');
+            
+            heroes.forEach(hero => {
+                const content = hero.querySelector('.hero-sticky-content');
+                if (!content) return;
+
+                const rect = hero.getBoundingClientRect();
+                
+                let fadeStart = 0; 
+                let fadeDistance = 400; 
+                
+                if (rect.top <= fadeStart) {
+                    let opacity = 1 - (Math.abs(rect.top) / fadeDistance);
+                    opacity = Math.max(0, Math.min(1, opacity));
+                    
+                    content.style.opacity = opacity;
+                    
+                    const scale = 1 - (Math.abs(rect.top) / (fadeDistance * 4));
+                    content.style.transform = `scale(${Math.max(0.9, scale)})`;
+                } else {
+                    content.style.opacity = 1;
+                    content.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
