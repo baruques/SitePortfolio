@@ -1,7 +1,6 @@
 /* =========================================
-   1. CSS RESET
+   1. CSS RESET MODERNO
    ========================================= */
-   
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -10,94 +9,219 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Garante que o header não cubra o título ao clicar no link */
   -webkit-text-size-adjust: none;
-  font-size: 100%; /* Define 1rem = 16px como base padrão */
+  font-size: 100%;
 }
 
 body {
   min-height: 100vh;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  background-color: #F2F8F5; /* Sua cor bg-primary */
-  color: #304B3C; /* Sua cor darker */
+  background-color: #F2F8F5; /* Bg-primary */
+  color: #304B3C; /* Darker */
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* ======================================================================================= */
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
+ul {
+  list-style: none;
+}
+
+/* =========================================
+   2. VARIÁVEIS (:root)
+   ========================================= */
 :root {
-  --rgb-overlay: 180, 207, 192; 
-  --rgb-dark: 48, 75, 60;      
+  /* Paleta RGB para transparências */
+  --rgb-overlay: 180, 207, 192; /* #B4CFC0 */
+  --rgb-dark: 48, 75, 60;      /* #304B3C */
   
+  /* Cores Sólidas */
   --bg-primary: #F2F8F5;
   --color-deep: #0D1410;
 
-  --glass-bg: rgba(var(--rgb-overlay), 0.4);
-  --glass-border: rgba(var(--rgb-dark), 0.15);
+  /* Efeito Vidro Evergreen */
+  --glass-bg: rgba(var(--rgb-overlay), 0.3); /* Mais leve */
+  --glass-border: rgba(var(--rgb-dark), 0.1);
   
+  /* Espaçamentos e Medidas */
   --spacing-md: 1rem;   
   --spacing-lg: 2rem;   
-  --radius-lg: 1.5rem;  
+  --radius-pill: 50px;
+  --radius-card: 24px;
 }
 
-/* Header Sticky com Glassmorphism */
-header {
+/* =========================================
+   3. HEADER "PÍLULA FLUTUANTE" (PHANTOM STYLE)
+   ========================================= */
+.main-header {
   position: sticky;
-  top: 0;
+  top: 20px; /* Espaço do topo */
   width: 100%;
   z-index: 1000;
-  background: rgba(242, 248, 245, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center; /* Centraliza a pílula */
+  padding: 0 1rem;
+  pointer-events: none; /* Permite clicar no site nas laterais do header */
 }
 
-nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-md) var(--spacing-lg);
+.nav-container {
+  pointer-events: auto; /* Reativa cliques dentro da pílula */
+  background: rgba(242, 248, 245, 0.9); /* Quase opaco para leitura */
+  backdrop-filter: blur(16px);
+  padding: 0.75rem 2.5rem;
+  border-radius: var(--radius-pill);
+  
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 3rem;
+  
+  /* Sombra suave + Borda sutil */
+  box-shadow: 0 10px 40px -10px rgba(48, 75, 60, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.logo strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--color-deep);
 }
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
+  gap: 2rem;
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: rgb(var(--rgb-dark));
   font-weight: 600;
-  transition: opacity 0.3s;
+  font-size: 0.95rem;
+  color: rgb(var(--rgb-dark));
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-  opacity: 0.7;
+  color: var(--color-deep);
 }
 
-/* Grid de Projetos Responsivo */
+/* Botões Sociais */
+.social-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  background: rgba(var(--rgb-overlay), 0.4);
+  color: rgb(var(--rgb-dark));
+  
+  /* Sombra interna (Inset) para profundidade */
+  box-shadow: inset 0 2px 4px rgba(48, 75, 60, 0.06);
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  background: rgb(var(--rgb-dark));
+  color: var(--bg-primary);
+  box-shadow: 0 8px 20px rgba(48, 75, 60, 0.25); /* Sombra externa ao flutuar */
+}
+
+/* =========================================
+   4. HERO & GRID DE PROJETOS
+   ========================================= */
 .grid-projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: var(--spacing-lg);
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cards mais largos */
+  gap: 2rem;
+  padding: 120px 2rem 4rem; /* Padding top alto para compensar o header fixo */
+  max-width: 1280px;
   margin: 0 auto;
 }
 
-/* Card Estilo Vidro Evergreen */
+/* Card Estilo Vidro */
 .card {
   background: var(--glass-bg);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  border-radius: var(--radius-card);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   border-color: rgb(var(--rgb-dark));
+  box-shadow: 0 15px 40px -10px rgba(48, 75, 60, 0.15);
+  background: rgba(255, 255, 255, 0.6); /* Clareia levemente no hover */
+}
+
+/* Estilo das Tags (Rust, DeFi, etc) */
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--color-deep);
+  background: rgba(180, 207, 192, 0.5); /* Cor Overlay sólida */
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-deep);
+  line-height: 1.2;
+}
+
+.card p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.card a {
+  color: var(--color-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+/* Responsividade para Mobile */
+@media (max-width: 960px) {
+  .nav-container {
+    padding: 0.75rem 1.5rem;
+    gap: 1.5rem;
+    width: 95%;
+  }
+  
+  .nav-links {
+    display: none; /* Esconde links no mobile por enquanto (Menu Hambúrguer futuro) */
+  }
+  
+  .social-buttons span { 
+    display: none; /* Esconde o texto "GitHub", deixa só ícone */
+  }
+  
+  .grid-projects {
+     padding-top: 100px;
+  }
 }
