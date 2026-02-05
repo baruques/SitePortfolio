@@ -6,17 +6,19 @@
     <meta name="description" content="Portfolio de Gabriel Baruque - Desenvolvedor Blockchain e Web3">
     
     <title>Gabriel Baruque | Blockchain Developer</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=1.2">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Google Fonts -->
+    
+    <link rel="stylesheet" href="style.css?v=1.4">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
 </head>
 <body>
+
     <main>
         <header class="main-header">
             <nav class="nav-container">
@@ -25,10 +27,10 @@
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#skills">Competências</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#home" id="nav-home">Home</a></li>
+                    <li><a href="#skills" id="nav-skills">Competências</a></li>
+                    <li><a href="#projetos" id="nav-projects">Projetos</a></li>
+                    <li><a href="#contato" id="nav-contact">Contato</a></li>
                 </ul>
 
                 <div class="social-buttons">
@@ -44,19 +46,19 @@
 
         <section id="home" class="hero-scroll">
             <div class="hero-sticky-content">
-                <h1 class="hero-text">
+                <h1 class="hero-text" id="hero-title">
                     Seu desenvolvedor <br>
                     <span class="highlight">
                         <i class="fab fa-ethereum"></i> Blockchain
                     </span>
                 </h1>
-                <p class="hero-subtext">Construindo soluções descentralizadas para o futuro da Web3.</p>
+                <p class="hero-subtext" id="hero-subtitle">Construindo soluções descentralizadas para o futuro da Web3.</p>
             </div>
         </section>
 
         <section id="skills" class="skills-section">
-            <h2 class="section-title">Tech Stack & Competências</h2>
-            
+            <h2 class="section-title" id="skills-title">Tech Stack & Competências</h2>
+
             <div class="skills-grid">
                 <div class="skill-card">
                     <i class="fab fa-html5"></i>
@@ -80,15 +82,15 @@
                     <span>MySQL</span>
                 </div>
                 
-                <div class="skill-card" style="border-color: rgba(98, 126, 234, 0.5);">
+                <div class="skill-card">
                     <i class="fab fa-rust"></i>
                     <span>Rust</span>
                 </div>
-                <div class="skill-card" style="border-color: rgba(98, 126, 234, 0.5);">
+                <div class="skill-card">
                     <i class="fab fa-ethereum"></i>
                     <span>Solidity</span>
                 </div>
-                <div class="skill-card" style="border-color: rgba(98, 126, 234, 0.5);">
+                <div class="skill-card">
                     <i class="fas fa-file-code"></i>
                     <span>Smart Contracts</span>
                 </div>
@@ -97,7 +99,7 @@
 
         <section class="hero-scroll" style="z-index: 1;">
             <div class="hero-sticky-content">
-                <h2 class="hero-text">
+                <h2 class="hero-text" id="projects-title">
                     Projetos completos <br>
                     <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">
                         ou em andamento
@@ -108,50 +110,59 @@
         </section>
 
         <section id="projetos" class="projects-section">
-            <div class="carousel-container">
+            <div class="carousel-container" id="carousel">
                 
                 <div class="card project-card">
-                    <div class="card-bg" style="background-image: url('assets/print-bot.jpg');"></div>
+                    <div class="card-bg" style="background-image: url('assets/bot-gmx.jpg');"></div>
                     <div class="card-content">
                         <div class="tag">Rust | Trading</div>
-                        <h3>Bot GMX</h3>
-                        <p>Automação de trading baseada em ciclos de mercado e dominância do BTC.</p>
+                        <h3 id="proj-bot-title">Bot GMX</h3>
+                        <p id="proj-bot-desc">Automação de trading baseada em ciclos de mercado e dominância.</p>
                     </div>
                 </div>
 
                 <div class="card project-card">
-                    <div class="card-bg" style="background-image: url('assets/print-curso.jpg');"></div>
+                    <div class="card-bg" style="background-image: url('assets/curso-defi.jpg');"></div>
                     <div class="card-content">
                         <div class="tag">DeFi | Educação</div>
-                        <h3>Formação DeFi</h3>
-                        <p>Estratégias avançadas de Yield Farming e provisão de liquidez em DEX.</p>
+                        <h3 id="proj-curso-defi-title">Formação DeFi</h3>
+                        <p id="proj-curso-defi-desc">Estratégias de Yield Farming e provisão de liquidez em DEX.</p>
                     </div>
                 </div>
 
                 <div class="card project-card">
-                    <div class="card-bg" style="background-image: url('assets/print-site.jpg');"></div>
+                    <div class="card-bg" style="background-image: url('assets/portfolio.jpg');"></div>
                     <div class="card-content">
                         <div class="tag">Web3 Design</div>
-                        <h3>Portfolio Phantom</h3>
-                        <p>Interface moderna estilo Glassmorphism com deploy automatizado via cPanel.</p>
+                        <h3 id="proj-portfolio-title">Site Portfólio</h3>
+                        <p id="proj-portfolio-desc">Interface Glassmorphism com deploy automatizado via cPanel.</p>
                     </div>
                 </div>
 
                 <div class="card project-card">
-                    <div class="card-bg"></div>
+                    <div class="card-bg" style="background-image: url('assets/dao-voting.jpg');"></div>
                     <div class="card-content">
-                        <div class="tag">Python | ML</div>
-                        <h3>Análise de Mercado</h3>
-                        <p>Previsão de preços de criptoativos utilizando Machine Learning.</p>
+                        <div class="tag">Solidity | Governance</div>
+                        <h3 id="proj-dao-voting-title">DAO Voting System</h3>
+                        <p id="proj-dao-voting-desc">Smart Contract para governança descentralizada e propostas on-chain.</p>
                     </div>
                 </div>
 
-                 <div class="card project-card">
-                    <div class="card-bg"></div>
+                <div class="card project-card">
+                    <div class="card-bg" style="background-image: url('assets/nft-market.jpg');"></div>
                     <div class="card-content">
-                        <div class="tag">NLP | Dados</div>
-                        <h3>Sentiment Analysis</h3>
-                        <p>Monitoramento de redes sociais para identificar tendências.</p>
+                        <div class="tag">Next.js | Ethereum</div>
+                        <h3 id="proj-nft-market-title">NFT Marketplace</h3>
+                        <p id="proj-nft-market-desc">Plataforma para mintar e negociar ativos digitais padrão ERC-721.</p>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="card-bg" style="background-image: url('assets/python-ml.jpg');"></div>
+                    <div class="card-content">
+                        <div class="tag">Python | AI</div>
+                        <h3 id="proj-python-ml-title">Análise de Mercado</h3>
+                        <p id="proj-python-ml-desc">Previsão de preços cripto usando Machine Learning.</p>
                     </div>
                 </div>
 
@@ -159,30 +170,239 @@
         </section>
         
         <footer id="contato" style="text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem;">
-            <p>&copy; 2026 Gabriel Baruque. Todos os direitos reservados.</p>
+            <p id="footer-text">&copy; 2026 Gabriel Baruque. Todos os direitos reservados.</p>
         </footer>
+
+        <div class="language-container">
+            <ul class="language-options" id="langOptions">
+                <li onclick="changeLanguage('zh')">
+                    <span class="fi fi-cn"></span>
+                    <span class="tooltip">中文</span>
+                </li>
+                <li onclick="changeLanguage('ja')">
+                    <span class="fi fi-jp"></span>
+                    <span class="tooltip">日本語</span>
+                </li>
+                <li onclick="changeLanguage('en')">
+                    <span class="fi fi-us"></span>
+                    <span class="tooltip">English</span>
+                </li>
+                <li onclick="changeLanguage('es')">
+                    <span class="fi fi-es"></span>
+                    <span class="tooltip">Español</span>
+                </li>
+                <li onclick="changeLanguage('pt')">
+                    <span class="fi fi-br"></span>
+                    <span class="tooltip">Português</span>
+                </li>
+            </ul>
+
+            <div class="language-btn" id="mainLangBtn" onclick="toggleLangMenu()">
+                <span class="fi fi-br" id="currentFlag"></span>
+            </div>
+        </div>
 
     </main>
 
     <script>
+    // ============================================
+    // 1. DICIONÁRIO DE TRADUÇÕES
+    // ============================================
+        const translations = {
+        'pt': {
+            'nav-home': 'Home',
+            'nav-skills': 'Competências',
+            'nav-projects': 'Projetos',
+            'nav-contact': 'Contato',
+            'hero-title': 'Seu desenvolvedor <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span>',
+            'hero-subtitle': 'Construindo soluções descentralizadas para o futuro da Web3.',
+            'projects-title': 'Projetos completos <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">ou em andamento</span>',
+            'footer-text': '&copy; 2026 Gabriel Baruque. Todos os direitos reservados.',
+            
+            // Cards PT
+            'proj-bot-title': 'Bot GMX',
+            'proj-bot-desc': 'Automação de trading baseada em ciclos de mercado e dominância.',
+            'proj-curso-defi-title': 'Formação DeFi',
+            'proj-curso-defi-desc': 'Estratégias de Yield Farming e provisão de liquidez em DEX.',
+            'proj-portfolio-title': 'Site Portfólio',
+            'proj-portfolio-desc': 'Interface Glassmorphism com deploy automatizado via cPanel.',
+            'proj-dao-voting-title': 'DAO Voting System',
+            'proj-dao-voting-desc': 'Smart Contract para governança descentralizada e propostas on-chain.',
+            'proj-nft-market-title': 'NFT Marketplace',
+            'proj-nft-market-desc': 'Plataforma para mintar e negociar ativos digitais padrão ERC-721.',
+            'proj-python-ml-title': 'Análise de Mercado',
+            'proj-python-ml-desc': 'Previsão de preços cripto usando Machine Learning.',
+            'skills-title': 'Tech Stack & Competências'
+        },
+        'en': {
+            'nav-home': 'Home',
+            'nav-skills': 'Skills',
+            'nav-projects': 'Projects',
+            'nav-contact': 'Contact',
+            'hero-title': 'Your <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span> Developer',
+            'hero-subtitle': 'Building decentralized solutions for the Web3 future.',
+            'projects-title': 'Completed Projects <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">or in progress</span>',
+            'footer-text': '&copy; 2026 Gabriel Baruque. All rights reserved.',
+            
+            // Cards EN (Technical Fixes)
+            'proj-bot-title': 'GMX Bot',
+            'proj-bot-desc': 'Automated trading based on market cycles and dominance.',
+            'proj-curso-defi-title': 'DeFi Training',
+            'proj-curso-defi-desc': 'Yield Farming strategies and DEX liquidity provision.',
+            'proj-portfolio-title': 'Portfolio Website',
+            'proj-portfolio-desc': 'Glassmorphism interface with automated deployment via cPanel.',
+            'proj-dao-voting-title': 'DAO Voting System',
+            'proj-dao-voting-desc': 'Smart Contract for decentralized governance and on-chain proposals.',
+            'proj-nft-market-title': 'NFT Marketplace',
+            'proj-nft-market-desc': 'Platform for minting and trading ERC-721 digital assets.',
+            'proj-python-ml-title': 'Market Analysis',
+            'proj-python-ml-desc': 'Crypto price prediction using Machine Learning.',
+            'skills-title': 'Tech Stack & Skills'
+        },
+        'es': {
+            'nav-home': 'Inicio',
+            'nav-skills': 'Habilidades',
+            'nav-projects': 'Proyectos',
+            'nav-contact': 'Contacto',
+            'hero-title': 'Tu desarrollador <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span>',
+            'hero-subtitle': 'Construyendo soluciones descentralizadas para el futuro de la Web3.',
+            'projects-title': 'Proyectos completos <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">o en progreso</span>',
+            'footer-text': '&copy; 2026 Gabriel Baruque. Todos los derechos reservados.',
+            
+            // Cards ES (Technical Fixes)
+            'proj-bot-title': 'Bot GMX',
+            'proj-bot-desc': 'Trading automatizado basado en ciclos de mercado y dominancia.',
+            'proj-curso-defi-title': 'Formación DeFi',
+            'proj-curso-defi-desc': 'Estrategias de Yield Farming y provisión de liquidez en DEX.',
+            'proj-portfolio-title': 'Portafolio Web',
+            'proj-portfolio-desc': 'Interfaz Glassmorphism con despliegue automatizado vía cPanel.',
+            'proj-dao-voting-title': 'Sistema de Votación DAO',
+            'proj-dao-voting-desc': 'Smart Contract para gobernanza descentralizada y propuestas on-chain.',
+            'proj-nft-market-title': 'NFT Marketplace',
+            'proj-nft-market-desc': 'Plataforma para acuñar (mint) y comerciar activos digitales ERC-721.',
+            'proj-python-ml-title': 'Análisis de Mercado',
+            'proj-python-ml-desc': 'Predicción de precios cripto usando Machine Learning.',
+            'skills-title': 'Tech Stack y Competencias'
+        },
+        'ja': {
+            'nav-home': 'ホーム',
+            'nav-skills': 'スキル',
+            'nav-projects': 'プロジェクト',
+            'nav-contact': 'お問い合わせ',
+            'hero-title': 'あなたの<br> <span class="highlight"><i class="fab fa-ethereum"></i> ブロックチェーン</span> 開発者',
+            'hero-subtitle': 'Web3の未来のために分散型ソリューションを構築します。',
+            'projects-title': '完了したプロジェクト <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">または進行中</span>',
+            'footer-text': '&copy; 2026 Gabriel Baruque. All rights reserved.',
+            
+            'proj-bot-title': 'GMX Bot',
+            'proj-bot-desc': '市場サイクルとBTCドミナンスに基づく自動取引。',
+            'proj-curso-defi-title': 'DeFiトレーニング',
+            'proj-curso-defi-desc': 'イールドファーミング戦略とDEX流動性提供。',
+            'proj-portfolio-title': 'ポートフォリオサイト',
+            'proj-portfolio-desc': 'cPanelによる自動デプロイを備えたGlassmorphism UI。',
+            'proj-dao-voting-title': 'DAO投票システム',
+            'proj-dao-voting-desc': '分散型ガバナンスとオンチェーン提案のためのスマートコントラクト。',
+            'proj-nft-market-title': 'NFTマーケットプレイス',
+            'proj-nft-market-desc': 'ERC-721デジタル資産のミントと取引のためのプラットフォーム。',
+            'proj-python-ml-title': '市場分析',
+            'proj-python-ml-desc': '機械学習を使用した暗号資産の価格予測。',
+            'skills-title': '技術スタック & スキル'
+        },
+
+        // --- CHINÊS SIMPLIFICADO (ZH) ---
+        'zh': {
+            'nav-home': '首页',
+            'nav-skills': '技能',
+            'nav-projects': '项目',
+            'nav-contact': '联系方式',
+            'hero-title': '您的<br> <span class="highlight"><i class="fab fa-ethereum"></i> 区块链</span> 开发者',
+            'hero-subtitle': '为Web3的未来构建去中心化解决方案。',
+            'projects-title': '已完成项目 <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">或进行中</span>',
+            'footer-text': '&copy; 2026 Gabriel Baruque. 保留所有权利。',
+            
+            'proj-bot-title': 'GMX 机器人',
+            'proj-bot-desc': '基于市场周期和BTC主导地位的自动化交易。',
+            'proj-curso-defi-title': 'DeFi 培训',
+            'proj-curso-defi-desc': '流动性挖矿 (Yield Farming) 策略与DEX流动性提供。',
+            'proj-portfolio-title': '作品集网站',
+            'proj-portfolio-desc': '具有通过cPanel自动部署功能的Glassmorphism界面。',
+            'proj-dao-voting-title': 'DAO 投票系统',
+            'proj-dao-voting-desc': '用于去中心化治理和链上提案的智能合约。',
+            'proj-nft-market-title': 'NFT 市场',
+            'proj-nft-market-desc': '用于铸造 (Minting) 和交易ERC-721数字资产的平台。',
+            'proj-python-ml-title': '市场分析',
+            'proj-python-ml-desc': '使用机器学习进行加密资产价格预测。',
+            'skills-title': '技术栈 & 技能'
+        }
+    };
+        // ============================================
+        const langOptions = document.getElementById('langOptions');
+        const mainLangBtn = document.getElementById('mainLangBtn');
+        const currentFlag = document.getElementById('currentFlag');
+
+        function updateTextContent(lang) {
+            // Pega o dicionário do idioma escolhido
+            const texts = translations[lang];
+            
+            // Para cada ID no dicionário, atualiza o texto no HTML
+            for (const [id, text] of Object.entries(texts)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = text; // Usa innerHTML para manter ícones e cores
+                }
+            }
+        }
+
+        function changeLanguage(lang) {
+            setFlag(lang);
+            updateTextContent(lang); // <--- AQUI A MÁGICA ACONTECE
+            toggleLangMenu();
+        }
+
+        // Inicialização (Detecta e Aplica)
+        document.addEventListener("DOMContentLoaded", () => {
+            const userLang = navigator.language || navigator.userLanguage; 
+            let targetLang = 'pt'; 
+
+            if (userLang.startsWith('en')) targetLang = 'en';
+            else if (userLang.startsWith('es')) targetLang = 'es';
+            else if (userLang.startsWith('ja')) targetLang = 'ja'; 
+            else if (userLang.startsWith('zh')) targetLang = 'zh'; 
+            
+            setFlag(targetLang);
+            updateTextContent(targetLang); 
+        });
+
+        // ... (Mantenha as funções toggleLangMenu, setFlag e o Scroll Hero/Drag Carousel iguais) ...
+        function toggleLangMenu() {
+            langOptions.classList.toggle('show');
+            mainLangBtn.classList.toggle('active');
+        }
+
+        function setFlag(lang) {
+        currentFlag.className = ''; 
+        currentFlag.classList.add('fi');
+        
+        if(lang === 'en') currentFlag.classList.add('fi-us');
+        else if(lang === 'es') currentFlag.classList.add('fi-es');
+        else if(lang === 'ja') currentFlag.classList.add('fi-jp');
+        else if(lang === 'zh') currentFlag.classList.add('fi-cn');
+        else currentFlag.classList.add('fi-br');
+    }
+        
+        // ... (Cole aqui o restante dos scripts de Scroll e Drag que já fizemos) ...
+        // SCROLL ANIMATION
         window.addEventListener('scroll', () => {
             const heroes = document.querySelectorAll('.hero-scroll');
-            
             heroes.forEach(hero => {
                 const content = hero.querySelector('.hero-sticky-content');
                 if (!content) return;
-
                 const rect = hero.getBoundingClientRect();
-                
-                let fadeStart = 0; 
-                let fadeDistance = 400; 
-                
-                if (rect.top <= fadeStart) {
+                const fadeDistance = 400;
+                if (rect.top <= 0) {
                     let opacity = 1 - (Math.abs(rect.top) / fadeDistance);
                     opacity = Math.max(0, Math.min(1, opacity));
-                    
                     content.style.opacity = opacity;
-                    
                     const scale = 1 - (Math.abs(rect.top) / (fadeDistance * 4));
                     content.style.transform = `scale(${Math.max(0.9, scale)})`;
                 } else {
@@ -191,6 +411,36 @@
                 }
             });
         });
-    </script>
+
+        // DRAG CAROUSEL
+        const slider = document.getElementById('carousel');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => { isDown = false; slider.classList.remove('active'); });
+        slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('active'); });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Fechar ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-container')) {
+                langOptions.classList.remove('show');
+                mainLangBtn.classList.remove('active');
+            }
+        });
+</script>
 </body>
 </html>
