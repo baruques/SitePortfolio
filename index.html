@@ -169,7 +169,67 @@
             </div>
         </section>
         
-        <footer id="contato" style="text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem;">
+        <section id="contato" class="contact-section">
+            <div class="contact-container">
+                
+                <div class="contact-info">
+                    <h2 id="contact-title">Vamos construir o futuro?</h2>
+                    <p id="contact-desc">
+                        Estou disponível para projetos freelance e oportunidades full-time. 
+                        Se você busca soluções Web3 inovadoras, mande um "Oi"!
+                    </p>
+                    
+                    <div class="contact-direct">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@gabrielbaruque.com.br</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="contact-loc">Rio de Janeiro, Brasil</span>
+                        </div>
+                    </div>
+
+                    <div class="social-buttons" style="margin-top: 2rem;">
+                        <a href="https://github.com/baruques" target="_blank" class="social-btn">
+                            <i class="fab fa-github"></i> <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/baruques/" target="_blank" class="social-btn">
+                            <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form action="https://formspree.io/f/mqedzlqn" method="POST" class="contact-form">
+
+                        <input type="text" name="_pegatrouxa" style="display:none !important">
+                        
+                        <div class="form-group">
+                            <label for="name" id="label-name">Nome</label>
+                            <input type="text" id="name" name="name" required placeholder="Seu nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" id="label-email">E-mail</label>
+                            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" id="label-message">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" required placeholder="Como posso ajudar?"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="btn-send">
+                            Enviar Mensagem <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 4rem; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
             <p id="footer-text">&copy; 2026 Gabriel Baruque. Todos os direitos reservados.</p>
         </footer>
 
@@ -209,132 +269,205 @@
     // 1. DICIONÁRIO DE TRADUÇÕES
     // ============================================
         const translations = {
-        'pt': {
-            'nav-home': 'Home',
-            'nav-skills': 'Competências',
-            'nav-projects': 'Projetos',
-            'nav-contact': 'Contato',
-            'hero-title': 'Seu desenvolvedor <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span>',
-            'hero-subtitle': 'Construindo soluções descentralizadas para o futuro da Web3.',
-            'projects-title': 'Projetos completos <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">ou em andamento</span>',
-            'footer-text': '&copy; 2026 Gabriel Baruque. Todos os direitos reservados.',
-            
-            // Cards PT
-            'proj-bot-title': 'Bot GMX',
-            'proj-bot-desc': 'Automação de trading baseada em ciclos de mercado e dominância.',
-            'proj-curso-defi-title': 'Formação DeFi',
-            'proj-curso-defi-desc': 'Estratégias de Yield Farming e provisão de liquidez em DEX.',
-            'proj-portfolio-title': 'Site Portfólio',
-            'proj-portfolio-desc': 'Interface Glassmorphism com deploy automatizado via cPanel.',
-            'proj-dao-voting-title': 'DAO Voting System',
-            'proj-dao-voting-desc': 'Smart Contract para governança descentralizada e propostas on-chain.',
-            'proj-nft-market-title': 'NFT Marketplace',
-            'proj-nft-market-desc': 'Plataforma para mintar e negociar ativos digitais padrão ERC-721.',
-            'proj-python-ml-title': 'Análise de Mercado',
-            'proj-python-ml-desc': 'Previsão de preços cripto usando Machine Learning.',
-            'skills-title': 'Tech Stack & Competências'
-        },
-        'en': {
-            'nav-home': 'Home',
-            'nav-skills': 'Skills',
-            'nav-projects': 'Projects',
-            'nav-contact': 'Contact',
-            'hero-title': 'Your <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span> Developer',
-            'hero-subtitle': 'Building decentralized solutions for the Web3 future.',
-            'projects-title': 'Completed Projects <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">or in progress</span>',
-            'footer-text': '&copy; 2026 Gabriel Baruque. All rights reserved.',
-            
-            // Cards EN (Technical Fixes)
-            'proj-bot-title': 'GMX Bot',
-            'proj-bot-desc': 'Automated trading based on market cycles and dominance.',
-            'proj-curso-defi-title': 'DeFi Training',
-            'proj-curso-defi-desc': 'Yield Farming strategies and DEX liquidity provision.',
-            'proj-portfolio-title': 'Portfolio Website',
-            'proj-portfolio-desc': 'Glassmorphism interface with automated deployment via cPanel.',
-            'proj-dao-voting-title': 'DAO Voting System',
-            'proj-dao-voting-desc': 'Smart Contract for decentralized governance and on-chain proposals.',
-            'proj-nft-market-title': 'NFT Marketplace',
-            'proj-nft-market-desc': 'Platform for minting and trading ERC-721 digital assets.',
-            'proj-python-ml-title': 'Market Analysis',
-            'proj-python-ml-desc': 'Crypto price prediction using Machine Learning.',
-            'skills-title': 'Tech Stack & Skills'
-        },
-        'es': {
-            'nav-home': 'Inicio',
-            'nav-skills': 'Habilidades',
-            'nav-projects': 'Proyectos',
-            'nav-contact': 'Contacto',
-            'hero-title': 'Tu desarrollador <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span>',
-            'hero-subtitle': 'Construyendo soluciones descentralizadas para el futuro de la Web3.',
-            'projects-title': 'Proyectos completos <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">o en progreso</span>',
-            'footer-text': '&copy; 2026 Gabriel Baruque. Todos los derechos reservados.',
-            
-            // Cards ES (Technical Fixes)
-            'proj-bot-title': 'Bot GMX',
-            'proj-bot-desc': 'Trading automatizado basado en ciclos de mercado y dominancia.',
-            'proj-curso-defi-title': 'Formación DeFi',
-            'proj-curso-defi-desc': 'Estrategias de Yield Farming y provisión de liquidez en DEX.',
-            'proj-portfolio-title': 'Portafolio Web',
-            'proj-portfolio-desc': 'Interfaz Glassmorphism con despliegue automatizado vía cPanel.',
-            'proj-dao-voting-title': 'Sistema de Votación DAO',
-            'proj-dao-voting-desc': 'Smart Contract para gobernanza descentralizada y propuestas on-chain.',
-            'proj-nft-market-title': 'NFT Marketplace',
-            'proj-nft-market-desc': 'Plataforma para acuñar (mint) y comerciar activos digitales ERC-721.',
-            'proj-python-ml-title': 'Análisis de Mercado',
-            'proj-python-ml-desc': 'Predicción de precios cripto usando Machine Learning.',
-            'skills-title': 'Tech Stack y Competencias'
-        },
-        'ja': {
-            'nav-home': 'ホーム',
-            'nav-skills': 'スキル',
-            'nav-projects': 'プロジェクト',
-            'nav-contact': 'お問い合わせ',
-            'hero-title': 'あなたの<br> <span class="highlight"><i class="fab fa-ethereum"></i> ブロックチェーン</span> 開発者',
-            'hero-subtitle': 'Web3の未来のために分散型ソリューションを構築します。',
-            'projects-title': '完了したプロジェクト <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">または進行中</span>',
-            'footer-text': '&copy; 2026 Gabriel Baruque. All rights reserved.',
-            
-            'proj-bot-title': 'GMX Bot',
-            'proj-bot-desc': '市場サイクルとBTCドミナンスに基づく自動取引。',
-            'proj-curso-defi-title': 'DeFiトレーニング',
-            'proj-curso-defi-desc': 'イールドファーミング戦略とDEX流動性提供。',
-            'proj-portfolio-title': 'ポートフォリオサイト',
-            'proj-portfolio-desc': 'cPanelによる自動デプロイを備えたGlassmorphism UI。',
-            'proj-dao-voting-title': 'DAO投票システム',
-            'proj-dao-voting-desc': '分散型ガバナンスとオンチェーン提案のためのスマートコントラクト。',
-            'proj-nft-market-title': 'NFTマーケットプレイス',
-            'proj-nft-market-desc': 'ERC-721デジタル資産のミントと取引のためのプラットフォーム。',
-            'proj-python-ml-title': '市場分析',
-            'proj-python-ml-desc': '機械学習を使用した暗号資産の価格予測。',
-            'skills-title': '技術スタック & スキル'
-        },
+        // =================================================================
+        // PORTUGUÊS (PT)
+        // =================================================================
+            'pt': {
+                // Navegação
+                'nav-home': 'Home',
+                'nav-skills': 'Competências',
+                'nav-projects': 'Projetos',
+                'nav-contact': 'Contato',
+                
+                // Hero Principal
+                'hero-title': 'Seu desenvolvedor <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span>',
+                'hero-subtitle': 'Construindo soluções descentralizadas para o futuro da Web3.',
+                
+                // Hero Projetos
+                'projects-title': 'Projetos completos <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">ou em andamento</span>',
+                
+                // Cards de Projetos
+                'proj-bot-title': 'Bot GMX',
+                'proj-bot-desc': 'Automação de trading baseada em ciclos de mercado e dominância.',
+                'proj-curso-defi-title': 'Formação DeFi',
+                'proj-curso-defi-desc': 'Estratégias de Yield Farming e provisão de liquidez em DEX.',
+                'proj-portfolio-title': 'Site Portfólio',
+                'proj-portfolio-desc': 'Interface Glassmorphism com deploy automatizado via cPanel.',
+                'proj-dao-voting-title': 'DAO Voting System',
+                'proj-dao-voting-desc': 'Smart Contract para governança descentralizada e propostas on-chain.',
+                'proj-nft-market-title': 'NFT Marketplace',
+                'proj-nft-market-desc': 'Plataforma para mintar e negociar ativos digitais padrão ERC-721.',
+                'proj-python-ml-title': 'Análise de Mercado',
+                'proj-python-ml-desc': 'Previsão de preços cripto usando Machine Learning.',
+                
+                // Seção Skills
+                'skills-title': 'Tech Stack & Competências',
 
-        // --- CHINÊS SIMPLIFICADO (ZH) ---
-        'zh': {
-            'nav-home': '首页',
-            'nav-skills': '技能',
-            'nav-projects': '项目',
-            'nav-contact': '联系方式',
-            'hero-title': '您的<br> <span class="highlight"><i class="fab fa-ethereum"></i> 区块链</span> 开发者',
-            'hero-subtitle': '为Web3的未来构建去中心化解决方案。',
-            'projects-title': '已完成项目 <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">或进行中</span>',
-            'footer-text': '&copy; 2026 Gabriel Baruque. 保留所有权利。',
-            
-            'proj-bot-title': 'GMX 机器人',
-            'proj-bot-desc': '基于市场周期和BTC主导地位的自动化交易。',
-            'proj-curso-defi-title': 'DeFi 培训',
-            'proj-curso-defi-desc': '流动性挖矿 (Yield Farming) 策略与DEX流动性提供。',
-            'proj-portfolio-title': '作品集网站',
-            'proj-portfolio-desc': '具有通过cPanel自动部署功能的Glassmorphism界面。',
-            'proj-dao-voting-title': 'DAO 投票系统',
-            'proj-dao-voting-desc': '用于去中心化治理和链上提案的智能合约。',
-            'proj-nft-market-title': 'NFT 市场',
-            'proj-nft-market-desc': '用于铸造 (Minting) 和交易ERC-721数字资产的平台。',
-            'proj-python-ml-title': '市场分析',
-            'proj-python-ml-desc': '使用机器学习进行加密资产价格预测。',
-            'skills-title': '技术栈 & 技能'
-        }
-    };
+                // Seção Contato (NOVO)
+                'contact-title': 'Vamos construir o futuro?',
+                'contact-desc': 'Estou disponível para projetos freelance e oportunidades full-time. Se você busca soluções Web3 inovadoras, mande um "Oi"!',
+                'contact-loc': 'Rio de Janeiro, Brasil',
+                'label-name': 'Nome',
+                'label-email': 'E-mail',
+                'label-message': 'Mensagem',
+                'btn-send': 'Enviar Mensagem <i class="fas fa-paper-plane"></i>',
+                
+                // Footer
+                'footer-text': '&copy; 2026 Gabriel Baruque. Todos os direitos reservados.'
+            },
+
+            // =================================================================
+            // INGLÊS (EN)
+            // =================================================================
+            'en': {
+                'nav-home': 'Home',
+                'nav-skills': 'Skills',
+                'nav-projects': 'Projects',
+                'nav-contact': 'Contact',
+                'hero-title': 'Your <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span> Developer',
+                'hero-subtitle': 'Building decentralized solutions for the Web3 future.',
+                'projects-title': 'Completed Projects <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">or in progress</span>',
+                
+                'proj-bot-title': 'GMX Bot',
+                'proj-bot-desc': 'Automated trading based on market cycles and dominance.',
+                'proj-curso-defi-title': 'DeFi Training',
+                'proj-curso-defi-desc': 'Yield Farming strategies and DEX liquidity provision.',
+                'proj-portfolio-title': 'Portfolio Website',
+                'proj-portfolio-desc': 'Glassmorphism interface with automated deployment via cPanel.',
+                'proj-dao-voting-title': 'DAO Voting System',
+                'proj-dao-voting-desc': 'Smart Contract for decentralized governance and on-chain proposals.',
+                'proj-nft-market-title': 'NFT Marketplace',
+                'proj-nft-market-desc': 'Platform for minting and trading ERC-721 digital assets.',
+                'proj-python-ml-title': 'Market Analysis',
+                'proj-python-ml-desc': 'Crypto price prediction using Machine Learning.',
+                
+                'skills-title': 'Tech Stack & Skills',
+
+                'contact-title': 'Let\'s build the future?',
+                'contact-desc': 'Available for freelance projects and full-time opportunities. If you are looking for innovative Web3 solutions, say "Hi"!',
+                'contact-loc': 'Rio de Janeiro, Brazil',
+                'label-name': 'Name',
+                'label-email': 'Email',
+                'label-message': 'Message',
+                'btn-send': 'Send Message <i class="fas fa-paper-plane"></i>',
+
+                'footer-text': '&copy; 2026 Gabriel Baruque. All rights reserved.'
+            },
+
+            // =================================================================
+            // ESPANHOL (ES)
+            // =================================================================
+            'es': {
+                'nav-home': 'Inicio',
+                'nav-skills': 'Habilidades',
+                'nav-projects': 'Proyectos',
+                'nav-contact': 'Contacto',
+                'hero-title': 'Tu desarrollador <br> <span class="highlight"><i class="fab fa-ethereum"></i> Blockchain</span>',
+                'hero-subtitle': 'Construyendo soluciones descentralizadas para el futuro de la Web3.',
+                'projects-title': 'Proyectos completos <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">o en progreso</span>',
+                
+                'proj-bot-title': 'Bot GMX',
+                'proj-bot-desc': 'Trading automatizado basado en ciclos de mercado y dominancia.',
+                'proj-curso-defi-title': 'Formación DeFi',
+                'proj-curso-defi-desc': 'Estrategias de Yield Farming y provisión de liquidez en DEX.',
+                'proj-portfolio-title': 'Portafolio Web',
+                'proj-portfolio-desc': 'Interfaz Glassmorphism con despliegue automatizado vía cPanel.',
+                'proj-dao-voting-title': 'Sistema de Votación DAO',
+                'proj-dao-voting-desc': 'Smart Contract para gobernanza descentralizada y propuestas on-chain.',
+                'proj-nft-market-title': 'NFT Marketplace',
+                'proj-nft-market-desc': 'Plataforma para acuñar (mint) y comerciar activos digitales ERC-721.',
+                'proj-python-ml-title': 'Análisis de Mercado',
+                'proj-python-ml-desc': 'Predicción de precios cripto usando Machine Learning.',
+                
+                'skills-title': 'Tech Stack y Competencias',
+
+                'contact-title': '¿Construimos el futuro?',
+                'contact-desc': 'Disponible para proyectos freelance y oportunidades full-time. Si buscas soluciones Web3 innovadoras, ¡di "Hola"!',
+                'contact-loc': 'Río de Janeiro, Brasil',
+                'label-name': 'Nombre',
+                'label-email': 'Correo',
+                'label-message': 'Mensaje',
+                'btn-send': 'Enviar Mensaje <i class="fas fa-paper-plane"></i>',
+
+                'footer-text': '&copy; 2026 Gabriel Baruque. Todos los derechos reservados.'
+            },
+
+            // =================================================================
+            // JAPONÊS (JA)
+            // =================================================================
+            'ja': {
+                'nav-home': 'ホーム',
+                'nav-skills': 'スキル',
+                'nav-projects': 'プロジェクト',
+                'nav-contact': 'お問い合わせ',
+                'hero-title': 'あなたの<br> <span class="highlight"><i class="fab fa-ethereum"></i> ブロックチェーン</span> 開発者',
+                'hero-subtitle': 'Web3の未来のために分散型ソリューションを構築します。',
+                'projects-title': '完了したプロジェクト <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">または進行中</span>',
+                
+                'proj-bot-title': 'GMX Bot',
+                'proj-bot-desc': '市場サイクルとBTCドミナンスに基づく自動取引。',
+                'proj-curso-defi-title': 'DeFiトレーニング',
+                'proj-curso-defi-desc': 'イールドファーミング戦略とDEX流動性提供。',
+                'proj-portfolio-title': 'ポートフォリオサイト',
+                'proj-portfolio-desc': 'cPanelによる自動デプロイを備えたGlassmorphism UI。',
+                'proj-dao-voting-title': 'DAO投票システム',
+                'proj-dao-voting-desc': '分散型ガバナンスとオンチェーン提案のためのスマートコントラクト。',
+                'proj-nft-market-title': 'NFTマーケットプレイス',
+                'proj-nft-market-desc': 'ERC-721デジタル資産のミントと取引のためのプラットフォーム。',
+                'proj-python-ml-title': '市場分析',
+                'proj-python-ml-desc': '機械学習を使用した暗号資産の価格予測。',
+                
+                'skills-title': '技術スタック & スキル',
+
+                'contact-title': '未来を共に築きませんか？',
+                'contact-desc': 'フリーランスやフルタイムの案件を募集中です。革新的なWeb3ソリューションをお探しの場合は、ぜひご連絡ください！',
+                'contact-loc': 'リオデジャネイロ、ブラジル',
+                'label-name': 'お名前',
+                'label-email': 'メールアドレス',
+                'label-message': 'メッセージ',
+                'btn-send': '送信 <i class="fas fa-paper-plane"></i>',
+
+                'footer-text': '&copy; 2026 Gabriel Baruque. All rights reserved.'
+            },
+
+            // =================================================================
+            // CHINÊS SIMPLIFICADO (ZH)
+            // =================================================================
+            'zh': {
+                'nav-home': '首页',
+                'nav-skills': '技能',
+                'nav-projects': '项目',
+                'nav-contact': '联系方式',
+                'hero-title': '您的<br> <span class="highlight"><i class="fab fa-ethereum"></i> 区块链</span> 开发者',
+                'hero-subtitle': '为Web3的未来构建去中心化解决方案。',
+                'projects-title': '已完成项目 <br> <span class="highlight" style="color: rgba(48, 75, 60, 0.7);">或进行中</span>',
+                
+                'proj-bot-title': 'GMX 机器人',
+                'proj-bot-desc': '基于市场周期和BTC主导地位的自动化交易。',
+                'proj-curso-defi-title': 'DeFi 培训',
+                'proj-curso-defi-desc': '流动性挖矿 (Yield Farming) 策略与DEX流动性提供。',
+                'proj-portfolio-title': '作品集网站',
+                'proj-portfolio-desc': '具有通过cPanel自动部署功能的Glassmorphism界面。',
+                'proj-dao-voting-title': 'DAO 投票系统',
+                'proj-dao-voting-desc': '用于去中心化治理和链上提案的智能合约。',
+                'proj-nft-market-title': 'NFT 市场',
+                'proj-nft-market-desc': '用于铸造 (Minting) 和交易ERC-721数字资产的平台。',
+                'proj-python-ml-title': '市场分析',
+                'proj-python-ml-desc': '使用机器学习进行加密资产价格预测。',
+                
+                'skills-title': '技术栈 & 技能',
+
+                'contact-title': '让我们共创未来？',
+                'contact-desc': '我目前接受自由职业或全职工作机会。如果您正在寻找创新的Web3解决方案，请跟我打个招呼！',
+                'contact-loc': '里约热内卢，巴西',
+                'label-name': '姓名',
+                'label-email': '电子邮箱',
+                'label-message': '留言',
+                'btn-send': '发送信息 <i class="fas fa-paper-plane"></i>',
+
+                'footer-text': '&copy; 2026 Gabriel Baruque. 保留所有权利。'
+            }
+        };
         // ============================================
         const langOptions = document.getElementById('langOptions');
         const mainLangBtn = document.getElementById('mainLangBtn');
