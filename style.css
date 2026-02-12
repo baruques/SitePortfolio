@@ -40,7 +40,7 @@ ul {
   --rgb-overlay: 180, 207, 192;
   --rgb-dark: 48, 75, 60;
   --bg-primary: #F2F8F5;
-  --color-deep: #0D1410;
+  --color-deep: #1E362D;
   --glass-bg: rgba(var(--rgb-overlay), 0.3);
   --glass-border: rgba(var(--rgb-dark), 0.1);
   --spacing-md: 1rem;   

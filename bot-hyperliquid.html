@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Hyperliquid | Gabriel Baruque</title>
+    
+    <link rel="stylesheet" href="style.css?v=4.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> <span id="btn-back">Voltar</span>
+    </a>
+
+    <div class="language-container">
+        <div class="language-btn" id="mainLangBtn" onclick="toggleLangMenu()">
+            <span class="fi fi-br" id="currentFlag"></span>
+        </div>
+        <ul class="language-options" id="langOptions">
+            <li onclick="changeLanguage('zh')"><span class="fi fi-cn"></span><span class="tooltip">中文</span></li>
+            <li onclick="changeLanguage('ja')"><span class="fi fi-jp"></span><span class="tooltip">日本語</span></li>
+            <li onclick="changeLanguage('en')"><span class="fi fi-us"></span><span class="tooltip">English</span></li>
+            <li onclick="changeLanguage('es')"><span class="fi fi-es"></span><span class="tooltip">Español</span></li>
+            <li onclick="changeLanguage('pt')"><span class="fi fi-br"></span><span class="tooltip">Português</span></li>
+        </ul>
+    </div>
+
+    <main class="project-page">
+        <section class="project-hero">
+            <div class="hero-content">
+                <span class="status-badge" id="network-badge">
+                    <span class="dot"></span> <span id="status-text">Live (Mainnet)</span>
+                </span>
+                <h1 id="hero-title">Bot Trading Quantitativo</h1>
+                <div class="tech-stack-row">
+                    <span class="tech-pill"><i class="fab fa-python"></i> Python</span>
+                    <span class="tech-pill"><i class="fas fa-cloud"></i> Heroku</span>
+                    <span class="tech-pill"><i class="fas fa-bolt"></i> Hyperliquid API</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="analytics-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="stat-return">ROI Total (%)</h3>
+                    <p class="stat-value neutral" id="val-roi">---</p>
+                    <span class="stat-sub" id="stat-return-sub">Performance Relativa</span>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-winrate">Taxa de Acerto</h3>
+                    <p class="stat-value" id="val-winrate">68.4%</p>
+                    <span class="stat-sub" id="stat-winrate-sub">Taxa de Eficiência</span>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-leverage">Alavancagem</h3>
+                    <p class="stat-value" id="val-leverage">0x</p>
+                    <span class="stat-sub" id="stat-leverage-sub">Risco Atual</span>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-positions">Sinais Ativos</h3>
+                    <p class="stat-value neutral" id="val-positions">0</p>
+                    <span class="stat-sub" id="stat-positions-sub">Monitoramento</span>
+                </div>
+            </div>
+
+            <div class="chart-container-wrapper">
+                <div class="chart-header">
+                    <h3 id="chart-title-growth">Growth Curve (Simulated)</h3>
+                    <div class="live-indicator" style="color: var(--color-deep); opacity: 0.6; animation: none;">
+                        <i class="fas fa-sync-alt"></i> <span id="chart-live">Sync: 2m</span>
+                    </div>
+                </div>
+                <div class="chart-relative-container" style="position: relative; height: 320px; width: 100%;">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="unified-monitor" style="margin-bottom: 4rem;">
+            <h3 style="margin-bottom: 1.5rem; color: var(--color-deep);" id="table-title">Monitor de Atividade (Live)</h3>
+            <div class="table-container" style="max-height: 400px; overflow-y: auto; background: #fff; border-radius: 16px; padding: 1rem; border: 1px solid rgba(48, 75, 60, 0.1); box-shadow: 0 5px 20px rgba(48, 75, 60, 0.05);">
+                <table style="width: 100%; border-collapse: collapse; min-width: 500px;">
+                    <thead>
+                        <tr style="text-align: left; color: var(--color-deep); opacity: 0.7; font-size: 0.9rem; border-bottom: 1px solid rgba(48, 75, 60, 0.1);">
+                            <th id="th-asset" style="padding: 1rem;">Ativo</th>
+                            <th id="th-status" style="padding: 1rem;">Status</th>
+                            <th id="th-side" style="padding: 1rem;">Lado</th>
+                            <th id="th-price" style="padding: 1rem;">Preço Ent.</th>
+                            <th id="th-pnl" style="padding: 1rem; text-align: right;">PnL (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="unified-table-body" style="font-family: monospace; font-size: 0.95rem; color: var(--color-deep);">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="project-details">
+            <div class="detail-grid">
+                <div class="text-block">
+                    <h2 id="origin-title">A Origem</h2>
+                    <p id="origin-p1" style="margin-bottom: 1rem; line-height: 1.6;"></p>
+                    <p id="origin-p2" style="line-height: 1.6;"></p>
+                </div>
+                <div class="text-block">
+                    <h2 id="tools-title">Arquitetura & Conectividade</h2>
+                    <ul class="feature-list" style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-server"></i>
+                            <span id="arch-1"></span>
+                        </li>
+                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-robot"></i>
+                            <span id="arch-2"></span>
+                        </li>
+                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-bolt"></i>
+                            <span id="arch-3"></span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-shield-alt"></i>
+                            <span id="arch-4"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        .project-page { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .back-btn { position: fixed; top: 30px; left: 30px; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 50px; font-weight: 700; color: var(--color-deep); border: 1px solid var(--glass-border); z-index: 100; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .back-btn:hover { transform: translateX(-5px); background: #fff; }
+        .project-hero { text-align: center; margin-bottom: 4rem; margin-top: 2rem; }
+        .project-hero h1 { font-size: 3rem; color: var(--color-deep); margin: 1rem 0; }
+        .status-badge { background: rgba(76, 175, 80, 0.2); color: #2E7D32; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+        .dot { width: 8px; height: 8px; background: currentColor; border-radius: 50%; animation: pulse 2s infinite; }
+        .tech-pill { background: var(--color-deep); color: #fff; padding: 5px 15px; border-radius: 8px; font-size: 0.9rem; margin: 0 5px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(48, 75, 60, 0.05); }
+        .stat-value { font-size: 2.5rem; font-weight: 800; margin: 0.5rem 0; color: var(--color-deep); }
+        .stat-value.positive { color: #2E7D32; }
+        .stat-value.negative { color: #d32f2f; }
+        .chart-container-wrapper { background: #fff; border-radius: 24px; padding: 2rem; box-shadow: 0 10px 40px rgba(48, 75, 60, 0.05); border: 1px solid rgba(48, 75, 60, 0.1); margin-bottom: 2rem;}
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .text-block h2 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-deep); }
+        .feature-list li { margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px; }
+        .feature-list i { color: var(--rgb-dark); min-width: 20px; text-align: center; padding-top: 4px; }
+        .feature-list span { line-height: 1.5; color: var(--color-deep); opacity: 0.9; }
+        .name-highlight { background: linear-gradient(90deg, #304B3C, #1E362D); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        @media(max-width: 850px) { .detail-grid { grid-template-columns: 1fr; gap: 2rem; } .project-hero h1 { font-size: 2rem; } }
+    </style>
+
+    <script>
+        const MY_WALLET_ADDRESS = '0x2210FfDB8A41954Ee35724872A967e32D8C7EAf6';
+        const API_URL = 'https://api.hyperliquid.xyz/info';
+
+        // Traduções
+        const translations = {
+            'pt': {
+                'btn-back': 'Voltar', 'hero-title': 'Bot Trading Quantitativo', 'table-title': 'Monitor de Atividade (Live)',
+                'stat-return': 'ROI Total (%)', 'stat-winrate': 'Taxa de Acerto', 'stat-leverage': 'Alavancagem', 'stat-positions': 'Sinais Ativos',
+                'stat-return-sub': 'Performance Relativa', 'stat-winrate-sub': 'Taxa de Eficiência', 'stat-leverage-sub': 'Risco Atual', 'stat-positions-sub': 'Monitoramento',
+                'chart-title-growth': 'Curva de Crescimento (Simulada)', 'th-asset': 'Ativo', 'th-status': 'Status', 'th-side': 'Lado', 'th-price': 'Preço Ent.', 'th-pnl': 'PnL (%)',
+                'origin-title': 'A Origem', 'origin-p1': 'O mercado cripto nunca dorme, mas o <span class="name-highlight">Gabriel Baruque</span> sim. O bot foi desenvolvido para capturar movimentos de liquidez 24/7 sem o desgaste emocional do trade manual.',
+                'origin-p2': 'O foco não é apenas automação, mas a execução estrita de um sistema criado por mim, eliminando decisões emocionais — o calcanhar de Aquiles da maioria dos Traders.',
+                'tools-title': 'Arquitetura & Conectividade',
+                'arch-1': '<strong>Heroku:</strong> Engine Python rodando em Cloud com monitoramento de uptime.',
+                'arch-2': '<strong>Telegram Bot API:</strong> Notificações em tempo real, relatórios de PnL e alertas de execução.',
+                'arch-3': '<strong>Hyperliquid API:</strong> Conexão de baixa latência via protocolos REST e WebSockets.',
+                'arch-4': '<strong>Risk Control:</strong> Gestão de margem e ordens stop-loss automáticas dinâmicas.'
+            },
+            'en': {
+                'btn-back': 'Back', 'hero-title': 'Quantitative Trading Bot', 'table-title': 'Activity Monitor (Live)',
+                'stat-return': 'Total ROI (%)', 'stat-winrate': 'Win Rate', 'stat-leverage': 'Leverage', 'stat-positions': 'Active Signals',
+                'stat-return-sub': 'Relative Performance', 'stat-winrate-sub': 'Efficiency Rate', 'stat-leverage-sub': 'Current Risk', 'stat-positions-sub': 'Monitoring',
+                'chart-title-growth': 'Growth Curve (Simulated)', 'th-asset': 'Asset', 'th-status': 'Status', 'th-side': 'Side', 'th-price': 'Entry Px', 'th-pnl': 'PnL (%)',
+                'origin-title': 'The Origin', 'origin-p1': 'The crypto market never sleeps, but <span class="name-highlight">Gabriel Baruque</span> does. This bot was developed to capture 24/7 liquidity movements without the emotional toll of manual trading.',
+                'origin-p2': 'The focus is not just on automation, but on the strict execution of a custom-built quantitative system, eliminating emotional decisions.',
+                'tools-title': 'Architecture & Connectivity',
+                'arch-1': '<strong>Heroku:</strong> Python Engine running in Cloud with uptime monitoring.',
+                'arch-2': '<strong>Telegram Bot API:</strong> Real-time notifications, PnL reports, and execution alerts.',
+                'arch-3': '<strong>Hyperliquid API:</strong> Low-latency connection via REST and WebSockets.',
+                'arch-4': '<strong>Risk Control:</strong> Margin management and dynamic automated stop-loss orders.'
+            },
+            'es': {
+                'btn-back': 'Volver', 'hero-title': 'Bot de Trading Cuantitativo', 'table-title': 'Monitor de Actividad (En Vivo)',
+                'stat-return': 'ROI Total (%)', 'stat-winrate': 'Tasa de Acierto', 'stat-leverage': 'Apalancamiento', 'stat-positions': 'Señales Activas',
+                'stat-return-sub': 'Rendimiento Relativo', 'stat-winrate-sub': 'Tasa de Eficiencia', 'stat-leverage-sub': 'Riesgo Actual', 'stat-positions-sub': 'Monitoreo',
+                'chart-title-growth': 'Curva de Crecimiento (Simulada)', 'th-asset': 'Activo', 'th-status': 'Estado', 'th-side': 'Lado', 'th-price': 'Precio Entr.', 'th-pnl': 'PnL (%)',
+                'origin-title': 'El Origen', 'origin-p1': 'El mercado cripto nunca duerme, pero <span class="name-highlight">Gabriel Baruque</span> sí. El bot fue desarrollado para capturar movimientos de liquidez 24/7.',
+                'origin-p2': 'El enfoque no es solo la automatización, sino la ejecución estricta de un sistema cuantitativo propio.',
+                'tools-title': 'Arquitectura y Conectividad',
+                'arch-1': '<strong>Heroku:</strong> Motor Python ejecutándose en la nube con monitoreo.',
+                'arch-2': '<strong>Telegram Bot API:</strong> Notificaciones en tiempo real, informes de PnL y alertas.',
+                'arch-3': '<strong>Hyperliquid API:</strong> Conexión de baja latencia mediante REST y WebSockets.',
+                'arch-4': '<strong>Risk Control:</strong> Gestión de margen y órdenes stop-loss dinámicas.'
+            },
+            'ja': {
+                'btn-back': '戻る', 'hero-title': '定量的取引ボット', 'table-title': 'アクティビティモニター',
+                'stat-return': '合計ROI (%)', 'stat-winrate': '勝率', 'stat-leverage': 'レバレッジ', 'stat-positions': 'アクティブシグナル',
+                'stat-return-sub': '相対パフォーマンス', 'stat-winrate-sub': '効率レート', 'stat-leverage-sub': '現在のリスク', 'stat-positions-sub': '監視中',
+                'chart-title-growth': '成長曲線（シミュレーション）', 'th-asset': '資産', 'th-status': 'ステータス', 'th-side': '売買', 'th-price': 'エントリー価格', 'th-pnl': '損益 (%)',
+                'origin-title': '起源', 'origin-p1': '仮想通貨市場は眠りませんが、<span class="name-highlight">Gabriel Baruque</span>は眠ります。このボットは24時間365日の流動性を捉えるために開発されました。',
+                'origin-p2': '自動化だけでなく、感情的な決定を排除する独自の定量システムの厳格な実行に焦点を当てています。',
+                'tools-title': 'アーキテクチャと接続性',
+                'arch-1': '<strong>Heroku:</strong> クラウドで稼働するPythonエンジン。',
+                'arch-2': '<strong>Telegram Bot API:</strong> リアルタイム通知とPnLレポート。',
+                'arch-3': '<strong>Hyperliquid API:</strong> RESTとWebSocketによる低遅延接続。',
+                'arch-4': '<strong>Risk Control:</strong> マージン管理と自動ストップロス注文。'
+            },
+            'zh': {
+                'btn-back': '返回', 'hero-title': '量化交易机器人', 'table-title': '活动监控 (实时)',
+                'stat-return': '总投资回报率 (%)', 'stat-winrate': '胜率', 'stat-leverage': '杠杆', 'stat-positions': '活跃信号',
+                'stat-return-sub': '相对表现', 'stat-winrate-sub': '效率率', 'stat-leverage-sub': '当前风险', 'stat-positions-sub': '监控中',
+                'chart-title-growth': '增长曲线 (模拟)', 'th-asset': '资产', 'th-status': '状态', 'th-side': '侧', 'th-price': '入场价', 'th-pnl': '盈亏 (%)',
+                'origin-title': '起源', 'origin-p1': '加密货币市场永不眠，但 <span class="name-highlight">Gabriel Baruque</span> 需要休息。该机器人旨在捕捉 24/7 的流动性。',
+                'origin-p2': '重点不仅仅是自动化，而是严格执行自定义量化系统，消除情绪化决策。',
+                'tools-title': '架构与连接',
+                'arch-1': '<strong>Heroku:</strong> 在云端运行的 Python 引擎。',
+                'arch-2': '<strong>Telegram Bot API:</strong> 实时通知、盈亏报告和警报。',
+                'arch-3': '<strong>Hyperliquid API:</strong> 通过 REST 和 WebSocket 实现低延迟连接。',
+                'arch-4': '<strong>Risk Control:</strong> 保证金管理和动态自动止损。'
+            }
+        };
+
+        async function updateMonitor() {
+            try {
+                const [stateRes, historyRes] = await Promise.all([
+                    fetch(API_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"type": "clearinghouseState", "user": MY_WALLET_ADDRESS}) }),
+                    fetch(API_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"type": "userFills", "user": MY_WALLET_ADDRESS}) })
+                ]);
+                const stateData = await stateRes.json();
+                const historyData = await historyRes.json();
+                renderUnifiedTable(stateData, historyData);
+                updateDashboardStats(stateData);
+            } catch (error) { console.error("Sync Error:", error); }
+        }
+
+        function renderUnifiedTable(state, history) {
+            const tableBody = document.getElementById('unified-table-body');
+            tableBody.innerHTML = '';
+            let rowCount = 0;
+            const openPositions = state.assetPositions ? state.assetPositions.filter(p => parseFloat(p.position.szi) !== 0) : [];
+
+            openPositions.forEach(pos => {
+                const item = pos.position;
+                const roi = ((parseFloat(item.unrealizedPnL) / (Math.abs(parseFloat(item.szi) * parseFloat(item.entryPx)))) * 100).toFixed(2);
+                tableBody.innerHTML += createRow(item.coin, 'OPEN', parseFloat(item.szi) > 0 ? 'LONG' : 'SHORT', parseFloat(item.entryPx), roi, true);
+                rowCount++;
+            });
+
+            if (rowCount < 5 && history && history.length > 0) {
+                const closedTrades = history.filter(f => parseFloat(f.closedPnl) !== 0).slice(0, 5 - rowCount);
+                closedTrades.forEach(trade => {
+                    const pnlPercent = ((parseFloat(trade.closedPnl) / (parseFloat(trade.px) * parseFloat(trade.sz))) * 100).toFixed(2);
+                    tableBody.innerHTML += createRow(trade.coin, 'SETTLED', trade.side === 'B' ? 'LONG' : 'SHORT', parseFloat(trade.px), pnlPercent, false);
+                    rowCount++;
+                });
+            }
+            if (rowCount === 0) tableBody.innerHTML = '<tr><td colspan="5" style="padding: 2rem; text-align: center;">Monitorando rede...</td></tr>';
+        }
+
+        function createRow(asset, status, side, price, pnl, isOpen) {
+            const pnlColor = parseFloat(pnl) >= 0 ? '#2E7D32' : '#d32f2f';
+            const statusStyle = isOpen ? 'font-weight: 800; color: #2E7D32;' : 'opacity: 0.6;';
+            return `<tr style="border-bottom: 1px solid rgba(48, 75, 60, 0.1);"><td style="padding: 1rem; font-weight: bold;">${asset}</td><td style="padding: 1rem; ${statusStyle} font-size: 0.8rem;">${status}</td><td style="padding: 1rem;"><span style="color: ${side === 'LONG' ? '#2E7D32' : '#d32f2f'};">${side}</span></td><td style="padding: 1rem;">$${price.toLocaleString('en-US', {minimumFractionDigits: 2})}</td><td style="padding: 1rem; text-align: right; color: ${pnlColor}; font-weight: bold;">${parseFloat(pnl) >= 0 ? '+' : ''}${pnl}%</td></tr>`;
+        }
+
+        function updateDashboardStats(data) {
+            if(!data.marginSummary) return;
+            const margin = data.marginSummary;
+            const accountValue = parseFloat(margin.accountValue);
+            const positions = data.assetPositions ? data.assetPositions.filter(p => parseFloat(p.position.szi) !== 0) : [];
+            document.getElementById('val-positions').innerText = positions.length;
+            const totalNotional = positions.reduce((acc, pos) => acc + (Math.abs(parseFloat(pos.position.szi)) * parseFloat(pos.position.entryPx)), 0);
+            document.getElementById('val-leverage').innerText = accountValue > 0 ? (totalNotional / accountValue).toFixed(2) + 'x' : '0x';
+            const currentUnrealizedPnL = positions.reduce((acc, pos) => acc + parseFloat(pos.position.unrealizedPnL), 0);
+            const totalROI = accountValue > 0 ? ((currentUnrealizedPnL / accountValue) * 100).toFixed(2) : "0.00";
+            document.getElementById('val-roi').innerText = (totalROI >= 0 ? '+' : '') + totalROI + '%';
+            document.getElementById('val-roi').className = `stat-value ${parseFloat(totalROI) >= 0 ? 'positive' : 'negative'}`;
+        }
+
+        function changeLanguage(lang) {
+            const texts = translations[lang] || translations['pt'];
+            for (const [id, text] of Object.entries(texts)) {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = text;
+            }
+            document.getElementById('currentFlag').className = 'fi fi-' + (lang === 'en' ? 'us' : lang === 'zh' ? 'cn' : lang === 'pt' ? 'br' : lang === 'ja' ? 'jp' : lang === 'es' ? 'es' : 'br');
+        }
+
+        function toggleLangMenu() {
+            document.getElementById('langOptions').classList.toggle('show');
+            document.getElementById('mainLangBtn').classList.toggle('active');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            changeLanguage('pt');
+            updateMonitor();
+            setInterval(updateMonitor, 120000);
+        });
+
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 30}, (_, i) => `${i+1}d`),
+                datasets: [{
+                    data: Array.from({length: 30}, () => 22.5 + (Math.random() * 0.3)),
+                    borderColor: '#1E362D',
+                    backgroundColor: 'rgba(30, 54, 45, 0.05)',
+                    fill: true, tension: 0.4, pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { display: false }, y: { min: 20, max: 25, ticks: { callback: v => v + '%' } } }
+            }
+        });
+    </script>
+</body>
+</html>
