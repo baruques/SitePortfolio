@@ -271,7 +271,6 @@ ul {
   
   cursor: grab; /* Mão aberta */
 
-
   /* para de selecionar texto ao arrastar */
   user-select: none;
   -webkit-user-select: none;
@@ -604,8 +603,9 @@ ul {
 }
 
 /* Inputs Bonitos */
-.contact-form input,
-.contact-form textarea {
+/* ALTERADO: Usando ID #contact-form para garantir que o estilo pegue */
+#contact-form input,
+#contact-form textarea {
   width: 100%;
   padding: 1rem;
   border-radius: 12px;
@@ -617,8 +617,8 @@ ul {
   transition: all 0.3s ease;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
+#contact-form input:focus,
+#contact-form textarea:focus {
   outline: none;
   border-color: rgb(var(--rgb-dark));
   background: rgba(255, 255, 255, 0.8);
