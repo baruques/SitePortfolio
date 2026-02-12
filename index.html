@@ -176,37 +176,30 @@
         </section>
         
         <section id="contato" class="contact-section">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2 id="contact-title">Vamos construir o futuro?</h2>
-                    <p id="contact-desc">Estou disponível para projetos freelance e oportunidades full-time. Se você busca soluções Web3 inovadoras, mande um "Oi"!</p>
-                    <div class="contact-direct">
-                        <div class="contact-item"><i class="fas fa-envelope"></i><span>contato@gabrielbaruque.com.br</span></div>
-                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span id="contact-loc">Rio de Janeiro, Brasil</span></div>
+            <div class="contact-form-wrapper">
+                <form id="contact-form" action="https://formspree.io/f/mqedzlqn" method="POST" class="contact-form">
+                    
+                    <input type="text" name="_pegaOtario" style="display:none !important">
+                    
+                    <div class="form-group">
+                        <label for="name" id="label-name">Nome</label>
+                        <input type="text" id="name" name="name" required placeholder="Seu nome">
                     </div>
-                    <div class="social-buttons" style="margin-top: 2rem;">
-                        <a href="https://github.com/baruques" target="_blank" class="social-btn"><i class="fab fa-github"></i> <span>GitHub</span></a>
-                        <a href="https://www.linkedin.com/in/baruques/" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> <span>LinkedIn</span></a>
+                    
+                    <div class="form-group">
+                        <label for="email" id="label-email">E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
                     </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form action="https://formspree.io/f/mqedzlqn" method="POST" class="contact-form">
-                        <input type="text" name="_pegaOtario" style="display:none !important">
-                        <div class="form-group">
-                            <label for="name" id="label-name">Nome</label>
-                            <input type="text" id="name" name="name" required placeholder="Seu nome">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" id="label-email">E-mail</label>
-                            <input type="email" id="email" name="email" required placeholder="seu@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" id="label-message">Mensagem</label>
-                            <textarea id="message" name="message" rows="4" required placeholder="Como posso ajudar?"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="btn-send">Isso, enviar Mensagem <i class="fas fa-paper-plane"></i></button>
-                    </form>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="message" id="label-message">Mensagem</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Como posso ajudar?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="btn-send">Isso, enviar Mensagem <i class="fas fa-paper-plane"></i></button>
+                    
+                    <div id="form-status" style="margin-top: 1rem; text-align: center; font-weight: bold; display: none;"></div>
+                </form>
             </div>
             <footer style="text-align: center; margin-top: 4rem; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
                 <p id="footer-text">&copy; 2026 Gabriel Baruque. Todos os direitos reservados.</p>
@@ -308,6 +301,7 @@
         const langOptions = document.getElementById('langOptions');
         const mainLangBtn = document.getElementById('mainLangBtn');
         const currentFlag = document.getElementById('currentFlag');
+        var form = document.getElementById("contact-form");
 
         function updateTextContent(lang) {
             const texts = translations[lang];
@@ -356,6 +350,59 @@
                 mainLangBtn.classList.remove('active');
             }
         });
+
+        async function handleSubmit(event) {
+            event.preventDefault(); // Impede o redirecionamento
+            var status = document.getElementById("form-status");
+            var btn = document.getElementById("btn-send");
+            var originalBtnText = btn.innerHTML;
+
+            // Feedback visual que está carregando
+            btn.innerHTML = "Enviando...";
+            btn.disabled = true;
+
+            var data = new FormData(event.target);
+
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Obrigado! Mensagem enviada com sucesso.";
+                    status.style.color = "#4CAF50"; // Verde
+                    status.style.display = "block";
+                    form.reset(); // Limpa os campos
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.innerHTML = "Ops! Algo deu errado. Tente novamente.";
+                        }
+                        status.style.color = "#ff4d4d"; // Vermelho
+                        status.style.display = "block";
+                    });
+                }
+            }).catch(error => {
+                status.innerHTML = "Erro na conexão. Verifique sua internet.";
+                status.style.color = "#ff4d4d";
+                status.style.display = "block";
+            }).finally(() => {
+                // Restaura o botão
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+
+                // Opcional: Sumir a mensagem depois de 2 segundos
+                setTimeout(() => {
+                    status.style.display = "none";
+                }, 2000);
+            });
+        }
+
+        form.addEventListener("submit", handleSubmit);
 
         // ============================================
         // 3. SCROLL ANIMATION (MULTI-HERO)
