@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bot Hyperliquid | Gabriel Baruque</title>
     
-    <link rel="stylesheet" href="style.css?v=4.1">
+    <link rel="stylesheet" href="style.css?v=4.2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
         <section class="project-hero">
             <div class="hero-content">
                 <span class="status-badge" id="network-badge">
-                    <span class="dot"></span> <span id="status-text">Live (Mainnet)</span>
+                    <span class="dot"></span> <span id="status-text">Conectado</span>
                 </span>
                 <h1 id="hero-title">Bot Trading Quantitativo</h1>
                 <div class="tech-stack-row">
@@ -74,7 +74,7 @@
 
             <div class="chart-container-wrapper">
                 <div class="chart-header">
-                    <h3 id="chart-title-growth">Growth Curve (Simulated)</h3>
+                    <h3 id="chart-title-growth">Curva de Crescimento</h3>
                     <div class="live-indicator" style="color: var(--color-deep); opacity: 0.6; animation: none;">
                         <i class="fas fa-sync-alt"></i> <span id="chart-live">Sync: 2m</span>
                     </div>
@@ -114,22 +114,10 @@
                 <div class="text-block">
                     <h2 id="tools-title">Arquitetura & Conectividade</h2>
                     <ul class="feature-list" style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-server"></i>
-                            <span id="arch-1"></span>
-                        </li>
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-robot"></i>
-                            <span id="arch-2"></span>
-                        </li>
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-bolt"></i>
-                            <span id="arch-3"></span>
-                        </li>
-                        <li style="display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-shield-alt"></i>
-                            <span id="arch-4"></span>
-                        </li>
+                        <li><i class="fas fa-server"></i><span id="arch-1"></span></li>
+                        <li><i class="fas fa-robot"></i><span id="arch-2"></span></li>
+                        <li><i class="fas fa-bolt"></i><span id="arch-3"></span></li>
+                        <li><i class="fas fa-shield-alt"></i><span id="arch-4"></span></li>
                     </ul>
                 </div>
             </div>
@@ -151,11 +139,10 @@
         .stat-value.positive { color: #2E7D32; }
         .stat-value.negative { color: #d32f2f; }
         .chart-container-wrapper { background: #fff; border-radius: 24px; padding: 2rem; box-shadow: 0 10px 40px rgba(48, 75, 60, 0.05); border: 1px solid rgba(48, 75, 60, 0.1); margin-bottom: 2rem;}
-        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         .text-block h2 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-deep); }
         .feature-list li { margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 15px; }
         .feature-list i { color: var(--rgb-dark); min-width: 20px; text-align: center; padding-top: 4px; }
-        .feature-list span { line-height: 1.5; color: var(--color-deep); opacity: 0.9; }
         .name-highlight { background: linear-gradient(90deg, #304B3C, #1E362D); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         @media(max-width: 850px) { .detail-grid { grid-template-columns: 1fr; gap: 2rem; } .project-hero h1 { font-size: 2rem; } }
@@ -165,72 +152,46 @@
         const MY_WALLET_ADDRESS = '0x2210FfDB8A41954Ee35724872A967e32D8C7EAf6';
         const API_URL = 'https://api.hyperliquid.xyz/info';
 
-        // Traduções
         const translations = {
             'pt': {
-                'btn-back': 'Voltar', 'hero-title': 'Bot Trading Quantitativo', 'table-title': 'Monitor de Atividade (Live)',
-                'stat-return': 'ROI Total (%)', 'stat-winrate': 'Taxa de Acerto', 'stat-leverage': 'Alavancagem', 'stat-positions': 'Sinais Ativos',
-                'stat-return-sub': 'Performance Relativa', 'stat-winrate-sub': 'Taxa de Eficiência', 'stat-leverage-sub': 'Risco Atual', 'stat-positions-sub': 'Monitoramento',
-                'chart-title-growth': 'Curva de Crescimento (Simulada)', 'th-asset': 'Ativo', 'th-status': 'Status', 'th-side': 'Lado', 'th-price': 'Preço Ent.', 'th-pnl': 'PnL (%)',
-                'origin-title': 'A Origem', 'origin-p1': 'O mercado cripto nunca dorme, mas o <span class="name-highlight">Gabriel Baruque</span> sim. O bot foi desenvolvido para capturar movimentos de liquidez 24/7 sem o desgaste emocional do trade manual.',
-                'origin-p2': 'O foco não é apenas automação, mas a execução estrita de um sistema criado por mim, eliminando decisões emocionais — o calcanhar de Aquiles da maioria dos Traders.',
-                'tools-title': 'Arquitetura & Conectividade',
-                'arch-1': '<strong>Heroku:</strong> Engine Python rodando em Cloud com monitoramento de uptime.',
-                'arch-2': '<strong>Telegram Bot API:</strong> Notificações em tempo real, relatórios de PnL e alertas de execução.',
-                'arch-3': '<strong>Hyperliquid API:</strong> Conexão de baixa latência via protocolos REST e WebSockets.',
-                'arch-4': '<strong>Risk Control:</strong> Gestão de margem e ordens stop-loss automáticas dinâmicas.'
+                'btn-back':'Voltar','hero-title':'Bot Trading Quantitativo','status-text':'Conectado','table-title':'Monitor de Atividade (Live)',
+                'stat-return':'ROI Total (%)','stat-winrate':'Taxa de Acerto','stat-leverage':'Alavancagem','stat-positions':'Sinais Ativos',
+                'stat-return-sub':'Performance Relativa','stat-winrate-sub':'Taxa de Eficiência','stat-leverage-sub':'Risco Atual','stat-positions-sub':'Monitoramento',
+                'chart-title-growth':'Curva de Crescimento','th-asset':'Ativo','th-status':'Status','th-side':'Lado','th-price':'Preço Ent.','th-pnl':'PnL (%)',
+                'origin-title':'A Origem','origin-p1':'O mercado cripto nunca dorme, mas o <span class="name-highlight">Gabriel Baruque</span> sim. O bot foi desenvolvido para capturar movimentos de liquidez 24/7 sem o desgaste emocional do trade manual.','origin-p2':'O foco não é apenas automação, mas a execução estrita de um sistema criado por mim, eliminando decisões emocionais — o calcanhar de Aquiles da maioria dos Traders.',
+                'tools-title':'Arquitetura & Conectividade','arch-1':'<strong>Heroku:</strong> Engine Python rodando em Cloud com monitoramento de uptime.','arch-2':'<strong>Telegram Bot API:</strong> Notificações em tempo real, relatórios diários e alertas de execução.','arch-3':'<strong>Hyperliquid API:</strong> Conexão de baixa latência via protocolos REST e WebSockets.','arch-4':'<strong>Risk Control:</strong> Gestão de margem e ordens stop-loss automáticas dinâmicas.'
             },
             'en': {
-                'btn-back': 'Back', 'hero-title': 'Quantitative Trading Bot', 'table-title': 'Activity Monitor (Live)',
-                'stat-return': 'Total ROI (%)', 'stat-winrate': 'Win Rate', 'stat-leverage': 'Leverage', 'stat-positions': 'Active Signals',
-                'stat-return-sub': 'Relative Performance', 'stat-winrate-sub': 'Efficiency Rate', 'stat-leverage-sub': 'Current Risk', 'stat-positions-sub': 'Monitoring',
-                'chart-title-growth': 'Growth Curve (Simulated)', 'th-asset': 'Asset', 'th-status': 'Status', 'th-side': 'Side', 'th-price': 'Entry Px', 'th-pnl': 'PnL (%)',
-                'origin-title': 'The Origin', 'origin-p1': 'The crypto market never sleeps, but <span class="name-highlight">Gabriel Baruque</span> does. This bot was developed to capture 24/7 liquidity movements without the emotional toll of manual trading.',
-                'origin-p2': 'The focus is not just on automation, but on the strict execution of a custom-built quantitative system, eliminating emotional decisions.',
-                'tools-title': 'Architecture & Connectivity',
-                'arch-1': '<strong>Heroku:</strong> Python Engine running in Cloud with uptime monitoring.',
-                'arch-2': '<strong>Telegram Bot API:</strong> Real-time notifications, PnL reports, and execution alerts.',
-                'arch-3': '<strong>Hyperliquid API:</strong> Low-latency connection via REST and WebSockets.',
-                'arch-4': '<strong>Risk Control:</strong> Margin management and dynamic automated stop-loss orders.'
+                'btn-back':'Back','hero-title':'Quantitative Trading Bot','status-text':'Connected','table-title':'Activity Monitor (Live)',
+                'stat-return':'Total ROI (%)','stat-winrate':'Win Rate','stat-leverage':'Leverage','stat-positions':'Active Signals',
+                'stat-return-sub':'Relative Performance','stat-winrate-sub':'Efficiency Rate','stat-leverage-sub':'Current Risk','stat-positions-sub':'Monitoring',
+                'chart-title-growth':'Growth Curve','th-asset':'Asset','th-status':'Status','th-side':'Side','th-price':'Entry Px','th-pnl':'PnL (%)',
+                'origin-title':'The Origin','origin-p1':'The crypto market never sleeps, but <span class="name-highlight">Gabriel Baruque</span> does. This bot was developed to capture 24/7 liquidity movements without the emotional toll of manual trading.','origin-p2':'The focus is not just on automation, but on the strict execution of a custom-built system, eliminating emotional decisions — the Achilles heel of most traders.',
+                'tools-title':'Architecture & Connectivity','arch-1':'<strong>Heroku:</strong> Python Engine running in the Cloud with uptime monitoring.','arch-2':'<strong>Telegram Bot API:</strong> Real-time notifications, daily reports, and execution alerts.','arch-3':'<strong>Hyperliquid API:</strong> Low-latency connection via REST and WebSockets.','arch-4':'<strong>Risk Control:</strong> Margin management and dynamic automated stop-loss orders.'
             },
             'es': {
-                'btn-back': 'Volver', 'hero-title': 'Bot de Trading Cuantitativo', 'table-title': 'Monitor de Actividad (En Vivo)',
-                'stat-return': 'ROI Total (%)', 'stat-winrate': 'Tasa de Acierto', 'stat-leverage': 'Apalancamiento', 'stat-positions': 'Señales Activas',
-                'stat-return-sub': 'Rendimiento Relativo', 'stat-winrate-sub': 'Tasa de Eficiencia', 'stat-leverage-sub': 'Riesgo Actual', 'stat-positions-sub': 'Monitoreo',
-                'chart-title-growth': 'Curva de Crecimiento (Simulada)', 'th-asset': 'Activo', 'th-status': 'Estado', 'th-side': 'Lado', 'th-price': 'Precio Entr.', 'th-pnl': 'PnL (%)',
-                'origin-title': 'El Origen', 'origin-p1': 'El mercado cripto nunca duerme, pero <span class="name-highlight">Gabriel Baruque</span> sí. El bot fue desarrollado para capturar movimientos de liquidez 24/7.',
-                'origin-p2': 'El enfoque no es solo la automatización, sino la ejecución estricta de un sistema cuantitativo propio.',
-                'tools-title': 'Arquitectura y Conectividad',
-                'arch-1': '<strong>Heroku:</strong> Motor Python ejecutándose en la nube con monitoreo.',
-                'arch-2': '<strong>Telegram Bot API:</strong> Notificaciones en tiempo real, informes de PnL y alertas.',
-                'arch-3': '<strong>Hyperliquid API:</strong> Conexión de baja latencia mediante REST y WebSockets.',
-                'arch-4': '<strong>Risk Control:</strong> Gestión de margen y órdenes stop-loss dinámicas.'
+                'btn-back':'Volver','hero-title':'Bot de Trading Cuantitativo','status-text':'Conectado','table-title':'Monitor de Actividad (En Vivo)',
+                'stat-return':'ROI Total (%)','stat-winrate':'Tasa de Acierto','stat-leverage':'Apalancamiento','stat-positions':'Señales Activas',
+                'stat-return-sub':'Rendimiento Relativo','stat-winrate-sub':'Tasa de Eficiencia','stat-leverage-sub':'Riesgo Actual','stat-positions-sub':'Monitoreo',
+                'chart-title-growth':'Curva de Crecimiento','th-asset':'Activo','th-status':'Estado','th-side':'Lado','th-price':'Precio Entr.','th-pnl':'PnL (%)',
+                'origin-title':'El Origen','origin-p1':'El mercado cripto nunca duerme, pero <span class="name-highlight">Gabriel Baruque</span> sí. El bot fue desarrollado para capturar movimientos de liquidez las 24 horas del día.','origin-p2':'El enfoque no es solo la automatización, sino la ejecución estricta de un sistema cuantitativo propio.',
+                'tools-title':'Arquitectura y Conectividad','arch-1':'<strong>Heroku:</strong> Motor Python ejecutándose en la nube con monitoreo.','arch-2':'<strong>Telegram Bot API:</strong> Notificaciones en tiempo real, informes de PnL y alertas.','arch-3':'<strong>Hyperliquid API:</strong> Conexión de baja latencia mediante REST y WebSockets.','arch-4':'<strong>Risk Control:</strong> Gestión de margen y órdenes automáticas de stop-loss dinámicas.'
             },
             'ja': {
-                'btn-back': '戻る', 'hero-title': '定量的取引ボット', 'table-title': 'アクティビティモニター',
-                'stat-return': '合計ROI (%)', 'stat-winrate': '勝率', 'stat-leverage': 'レバレッジ', 'stat-positions': 'アクティブシグナル',
-                'stat-return-sub': '相対パフォーマンス', 'stat-winrate-sub': '効率レート', 'stat-leverage-sub': '現在のリスク', 'stat-positions-sub': '監視中',
-                'chart-title-growth': '成長曲線（シミュレーション）', 'th-asset': '資産', 'th-status': 'ステータス', 'th-side': '売買', 'th-price': 'エントリー価格', 'th-pnl': '損益 (%)',
-                'origin-title': '起源', 'origin-p1': '仮想通貨市場は眠りませんが、<span class="name-highlight">Gabriel Baruque</span>は眠ります。このボットは24時間365日の流動性を捉えるために開発されました。',
-                'origin-p2': '自動化だけでなく、感情的な決定を排除する独自の定量システムの厳格な実行に焦点を当てています。',
-                'tools-title': 'アーキテクチャと接続性',
-                'arch-1': '<strong>Heroku:</strong> クラウドで稼働するPythonエンジン。',
-                'arch-2': '<strong>Telegram Bot API:</strong> リアルタイム通知とPnLレポート。',
-                'arch-3': '<strong>Hyperliquid API:</strong> RESTとWebSocketによる低遅延接続。',
-                'arch-4': '<strong>Risk Control:</strong> マージン管理と自動ストップロス注文。'
+                'btn-back':'戻る','hero-title':'定量的取引ボット','status-text':'接続済み','table-title':'アクティビティモニター',
+                'stat-return':'合計ROI (%)','stat-winrate':'勝率','stat-leverage':'レバレッジ','stat-positions':'シグナル',
+                'stat-return-sub':'相対パフォーマンス','stat-winrate-sub':'効率レート','stat-leverage-sub':'リスク','stat-positions-sub':'監視中',
+                'chart-title-growth':'成長曲線','th-asset':'資産','th-status':'状態','th-side':'売買','th-price':'エントリー価格','th-pnl':'損益 (%)',
+                'origin-title':'起源','origin-p1':'仮想通貨市場は眠りませんが、<span class="name-highlight">Gabriel Baruque</span>は眠ります。このボットは24時間365日の流動性を捉えるために開発されました。','origin-p2':'自動化だけでなく、感情的な決定を排除する独自の定量システムの厳格な実行に焦点を当てています。',
+                'tools-title':'アーキテクチャと接続性','arch-1':'<strong>Heroku:</strong> クラウドで稼働するPythonエンジン。','arch-2':'<strong>Telegram Bot API:</strong> リアルタイム通知とPnLレポート。','arch-3':'<strong>Hyperliquid API:</strong> RESTとWebSocketによる接続。','arch-4':'<strong>Risk Control:</strong> マージン管理と自動ストップロス注文。'
             },
             'zh': {
-                'btn-back': '返回', 'hero-title': '量化交易机器人', 'table-title': '活动监控 (实时)',
-                'stat-return': '总投资回报率 (%)', 'stat-winrate': '胜率', 'stat-leverage': '杠杆', 'stat-positions': '活跃信号',
-                'stat-return-sub': '相对表现', 'stat-winrate-sub': '效率率', 'stat-leverage-sub': '当前风险', 'stat-positions-sub': '监控中',
-                'chart-title-growth': '增长曲线 (模拟)', 'th-asset': '资产', 'th-status': '状态', 'th-side': '侧', 'th-price': '入场价', 'th-pnl': '盈亏 (%)',
-                'origin-title': '起源', 'origin-p1': '加密货币市场永不眠，但 <span class="name-highlight">Gabriel Baruque</span> 需要休息。该机器人旨在捕捉 24/7 的流动性。',
-                'origin-p2': '重点不仅仅是自动化，而是严格执行自定义量化系统，消除情绪化决策。',
-                'tools-title': '架构与连接',
-                'arch-1': '<strong>Heroku:</strong> 在云端运行的 Python 引擎。',
-                'arch-2': '<strong>Telegram Bot API:</strong> 实时通知、盈亏报告和警报。',
-                'arch-3': '<strong>Hyperliquid API:</strong> 通过 REST 和 WebSocket 实现低延迟连接。',
-                'arch-4': '<strong>Risk Control:</strong> 保证金管理和动态自动止损。'
+                'btn-back':'返回','hero-title':'量化交易机器人','status-text':'已连接','table-title':'活动监控 (实时)',
+                'stat-return':'总投资回报率 (%)','stat-winrate':'胜率','stat-leverage':'杠杆','stat-positions':'活跃信号',
+                'stat-return-sub':'相对表现','stat-winrate-sub':'效率率','stat-leverage-sub':'当前风险','stat-positions-sub':'监控中',
+                'chart-title-growth':'增长曲线','th-asset':'资产','th-status':'状态','th-side':'侧','th-price':'入场价','th-pnl':'盈亏 (%)',
+                'origin-title':'起源','origin-p1':'加密货币市场永不眠，但 <span class="name-highlight">Gabriel Baruque</span> 需要休息。该机器人旨在捕捉 24/7 的流动性。','origin-p2':'重点不仅仅是自动化，而是严格执行自定义量化系统，消除情绪化决策。',
+                'tools-title':'架构与连接','arch-1':'<strong>Heroku:</strong> 在云端运行的 Python 引擎。','arch-2':'<strong>Telegram Bot API:</strong> 实时通知、盈亏报告和警报。','arch-3':'<strong>Hyperliquid API:</strong> 通过 REST 和 WebSocket 实现连接。','arch-4':'<strong>Risk Control:</strong> 保证金管理和动态自动止损。'
             }
         };
 
@@ -252,11 +213,13 @@
             tableBody.innerHTML = '';
             let rowCount = 0;
             const openPositions = state.assetPositions ? state.assetPositions.filter(p => parseFloat(p.position.szi) !== 0) : [];
+            const openLabel = translations[currentLang]['th-status'] === 'Status' ? 'OPEN' : currentLang === 'pt' ? 'ABERTO' : 'OPEN';
+            const settledLabel = currentLang === 'pt' ? 'FECHADO' : 'SETTLED';
 
             openPositions.forEach(pos => {
                 const item = pos.position;
                 const roi = ((parseFloat(item.unrealizedPnL) / (Math.abs(parseFloat(item.szi) * parseFloat(item.entryPx)))) * 100).toFixed(2);
-                tableBody.innerHTML += createRow(item.coin, 'OPEN', parseFloat(item.szi) > 0 ? 'LONG' : 'SHORT', parseFloat(item.entryPx), roi, true);
+                tableBody.innerHTML += createRow(item.coin, openLabel, parseFloat(item.szi) > 0 ? 'LONG' : 'SHORT', parseFloat(item.entryPx), roi, true);
                 rowCount++;
             });
 
@@ -264,11 +227,11 @@
                 const closedTrades = history.filter(f => parseFloat(f.closedPnl) !== 0).slice(0, 5 - rowCount);
                 closedTrades.forEach(trade => {
                     const pnlPercent = ((parseFloat(trade.closedPnl) / (parseFloat(trade.px) * parseFloat(trade.sz))) * 100).toFixed(2);
-                    tableBody.innerHTML += createRow(trade.coin, 'SETTLED', trade.side === 'B' ? 'LONG' : 'SHORT', parseFloat(trade.px), pnlPercent, false);
+                    tableBody.innerHTML += createRow(trade.coin, settledLabel, trade.side === 'B' ? 'LONG' : 'SHORT', parseFloat(trade.px), pnlPercent, false);
                     rowCount++;
                 });
             }
-            if (rowCount === 0) tableBody.innerHTML = '<tr><td colspan="5" style="padding: 2rem; text-align: center;">Monitorando rede...</td></tr>';
+            if (rowCount === 0) tableBody.innerHTML = '<tr><td colspan="5" style="padding: 2rem; text-align: center;">...</td></tr>';
         }
 
         function createRow(asset, status, side, price, pnl, isOpen) {
@@ -291,13 +254,16 @@
             document.getElementById('val-roi').className = `stat-value ${parseFloat(totalROI) >= 0 ? 'positive' : 'negative'}`;
         }
 
+        let currentLang = 'pt';
         function changeLanguage(lang) {
+            currentLang = lang;
             const texts = translations[lang] || translations['pt'];
             for (const [id, text] of Object.entries(texts)) {
                 const el = document.getElementById(id);
                 if (el) el.innerHTML = text;
             }
             document.getElementById('currentFlag').className = 'fi fi-' + (lang === 'en' ? 'us' : lang === 'zh' ? 'cn' : lang === 'pt' ? 'br' : lang === 'ja' ? 'jp' : lang === 'es' ? 'es' : 'br');
+            updateMonitor(); // Recarregar tabela com novos nomes
         }
 
         function toggleLangMenu() {
